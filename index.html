@@ -1931,62 +1931,47 @@ function applyJob(jobId){
 
 function closeApply(){
 
-    document.getElementById("applyModal").style.display = "none";
-}
+    document.getElementById("applyModal").style.display = 
 
-async function submitApplication(){
+}async function submitApplication(){
 
-    const name =
-        document.getElementById("appName").value.trim();
-
-    const phone =
-        document.getElementById("appPhone").value.trim();
-
-    const email =
-        document.getElementById("appEmail").value.trim();
-
-    const city =
-        document.getElementById("appCity").value.trim();
-
-    const education =
-        document.getElementById("appEducation").value.trim();
-
-    const experience =
-        document.getElementById("appExperience").value.trim();
+    const name = document.getElementById("appName").value.trim();
+    const phone = document.getElementById("appPhone").value.trim();
+    const email = document.getElementById("appEmail").value.trim();
+    const city = document.getElementById("appCity").value.trim();
+    const education = document.getElementById("appEducation").value.trim();
+    const experience = document.getElementById("appExperience").value.trim();
 
     if(!name || !phone || !email){
-
         alert("Name, Mobile और Email भरना जरूरी है।");
         return;
     }
 
     if(!selectedJobId){
-
         alert("Job select नहीं हुई।");
         return;
     }
 
-    const { error } =
-        await supabaseClient
+    const { data, error } = await supabaseClient
         .from("applications")
         .insert({
-
-            job_id: selectedJobId,
+            job_id: Number(selectedJobId),
             name: name,
             phone: phone,
             email: email,
             city: city,
             education: education,
             experience: experience
-
-        });
+        })
+        .select();
 
     if(error){
-
         alert("Application submit नहीं हुई: " + error.message);
         console.error(error);
         return;
     }
+
+    console.log("Application saved:", data);
 
     alert("✅ आपकी Application successfully submit हो गई!");
 
@@ -1998,7 +1983,6 @@ async function submitApplication(){
     document.getElementById("appCity").value = "";
     document.getElementById("appEducation").value = "";
     document.getElementById("appExperience").value = "";
-
 }
 
 </script>
