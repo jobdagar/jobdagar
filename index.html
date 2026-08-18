@@ -2289,5 +2289,10 @@ async function loadDatabaseJobs(){
 loadDatabaseJobs();
 
 </script>
+<script>
+document.querySelectorAll('#jobsGrid > .job-card').forEach(function(job){
+    job.style.display = 'none';
+});
+</script>
 </body>
 </html>
