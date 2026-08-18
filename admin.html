@@ -373,7 +373,42 @@ async function adminLogin(){
 
 }
 
-</script>
 </div>
+
+<script>
+
+async function adminLogin(){
+
+    const email =
+    document.getElementById("adminEmail").value.trim();
+
+    const password =
+    document.getElementById("adminPassword").value;
+
+    const message =
+    document.getElementById("loginMessage");
+
+    if(email === "" || password === ""){
+        message.innerText = "Email और Password दोनों भरें।";
+        return;
+    }
+
+    const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    if(error){
+        message.innerText =
+        "Login failed: " + error.message;
+        return;
+    }
+
+    document.getElementById("adminLogin").style.display = "none";
+}
+
+</script>
+
 </body>
 </html>
