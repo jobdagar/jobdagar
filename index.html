@@ -1933,7 +1933,7 @@ function closeApply(){
 
     document.getElementById("applyModal").style.display = 
 
-}async function submitApplication(){
+async function submitApplication(){
 
     const name = document.getElementById("appName").value.trim();
     const phone = document.getElementById("appPhone").value.trim();
@@ -1952,9 +1952,9 @@ function closeApply(){
         return;
     }
 
-    const { data, error } = await supabaseClient
+    const { error } = await supabaseClient
         .from("applications")
-        .insert({
+        .insert([{
             job_id: Number(selectedJobId),
             name: name,
             phone: phone,
@@ -1962,16 +1962,13 @@ function closeApply(){
             city: city,
             education: education,
             experience: experience
-        })
-        .select();
+        }]);
 
     if(error){
+        console.error("APPLICATION ERROR:", error);
         alert("Application submit नहीं हुई: " + error.message);
-        console.error(error);
         return;
     }
-
-    console.log("Application saved:", data);
 
     alert("✅ आपकी Application successfully submit हो गई!");
 
@@ -1983,6 +1980,7 @@ function closeApply(){
     document.getElementById("appCity").value = "";
     document.getElementById("appEducation").value = "";
     document.getElementById("appExperience").value = "";
+}
 }
 
 </script>
