@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-
-const SUPABASE_URL = "https://ojloflsbvvucyumlgtus.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_VlsXGIvfOJFlaN5pnjVVlA_p22cMCGJ";
-
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-);
-console.log("Supabase client connected:", supabaseClient);
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>JobDagar Admin Panel</title>
 
-<style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<style>
 *{
 margin:0;
 padding:0;
@@ -34,215 +22,26 @@ background:#f4f7fb;
 color:#172033;
 }
 
-.admin-header{
+header{
 background:#1769e0;
 color:white;
 padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.admin-header h1{
+header h1{
 font-size:22px;
 }
 
-.admin-header p{
-margin-top:5px;
-font-size:13px;
-opacity:.9;
-}
-
 .container{
-width:92%;
+width:94%;
 max-width:1100px;
 margin:25px auto;
 }
 
-.dashboard{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px;
-}
-
-.card{
-background:white;
-padding:22px;
-border-radius:12px;
-border:1px solid #e4e9f0;
-}
-
-.card-icon{
-font-size:28px;
-}
-
-.card h3{
-margin-top:10px;
-font-size:15px;
-}
-
-.card strong{
-display:block;
-font-size:28px;
-margin-top:5px;
-color:#1769e0;
-}
-
-.section{
-background:white;
-margin-top:25px;
-padding:25px;
-border-radius:12px;
-border:1px solid #e4e9f0;
-}
-
-.section h2{
-font-size:20px;
-margin-bottom:18px;
-}
-
-.buttons{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-}
-
-button{
-border:0;
-background:#1769e0;
-color:white;
-padding:11px 18px;
-border-radius:7px;
-cursor:pointer;
-font-weight:bold;
-}
-
-button:hover{
-background:#0d55b8;
-}
-
-.logout{
-background:#e53935;
-}
-
-@media(max-width:700px){
-
-.dashboard{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header class="admin-header">
-
-<h1>🛠️ JobDagar Admin Panel</h1>
-
-<p>Website Management Dashboard</p>
-
-</header>
-
-<div class="container">
-
-<div class="dashboard">
-
-<div class="card">
-
-<div class="card-icon">💼</div>
-
-<h3>Total Jobs</h3>
-
-<strong id="totalJobs">0</strong>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">📝</div>
-
-<h3>Applications</h3>
-
-<strong id="totalApplications">0</strong>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">🏢</div>
-
-<h3>Employers</h3>
-
-<strong id="totalEmployers">0</strong>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">📩</div>
-
-<h3>Messages</h3>
-
-<strong id="totalMessages">0</strong>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Quick Actions</h2>
-
-<div class="buttons">
-
-<button onclick="showAddJob()">
-➕ Add Job
-</button>
-
-<button>
-📋 Manage Jobs
-</button>
-
-<button>
-📝 Applications
-</button>
-
-<button>
-📩 Messages
-</button>
-
-<button>
-🏢 Employers
-</button>
-
-<button class="logout">
-Logout
-</button>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Welcome to JobDagar Admin</h2>
-
-<p>
-यहाँ से आगे हम Jobs, Applications,
-Employers और Contact Messages manage करने
-का पूरा system बनाएँगे।
-</p>
-
-</div>
-
-</div>
-<div id="adminLogin" style="
+.login{
 position:fixed;
 inset:0;
 background:#f4f7fb;
@@ -251,266 +50,828 @@ align-items:center;
 justify-content:center;
 z-index:9999;
 padding:20px;
-">
+}
 
-<div style="
+.login-box{
 background:white;
 width:100%;
 max-width:380px;
 padding:30px;
 border-radius:15px;
 box-shadow:0 10px 40px rgba(0,0,0,.12);
-">
+}
 
-<h2 style="margin-bottom:8px;">
-🔐 JobDagar Admin Login
-</h2>
+input,textarea,select{
+width:100%;
+padding:12px;
+margin:6px 0;
+border:1px solid #dce2ea;
+border-radius:7px;
+font-size:15px;
+}
 
-<p style="color:#687386;margin-bottom:20px;">
+textarea{
+height:110px;
+resize:vertical;
+}
+
+button{
+border:0;
+background:#1769e0;
+color:white;
+padding:11px 16px;
+border-radius:7px;
+cursor:pointer;
+font-weight:bold;
+margin:4px;
+}
+
+button:hover{
+background:#0d55b8;
+}
+
+.red{
+background:#e53935;
+}
+
+.gray{
+background:#777;
+}
+
+.green{
+background:#159447;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+border:1px solid #e4e9f0;
+}
+
+.card strong{
+display:block;
+font-size:28px;
+color:#1769e0;
+margin-top:8px;
+}
+
+.section{
+background:white;
+padding:22px;
+margin-top:22px;
+border-radius:12px;
+border:1px solid #e4e9f0;
+}
+
+.job{
+border:1px solid #e1e5eb;
+padding:15px;
+border-radius:9px;
+margin:10px 0;
+}
+
+.job h3{
+margin-bottom:6px;
+}
+
+.hidden{
+display:none;
+}
+
+.message{
+margin-top:10px;
+font-size:14px;
+}
+
+.success{
+color:#159447;
+}
+
+.error{
+color:#e53935;
+}
+
+@media(max-width:700px){
+.cards{
+grid-template-columns:repeat(2,1fr);
+}
+
+header{
+align-items:flex-start;
+gap:10px;
+}
+
+header h1{
+font-size:18px;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div class="login" id="loginBox">
+
+<div class="login-box">
+
+<h2>🔐 JobDagar Admin</h2>
+
+<p style="margin:8px 0 18px;color:#687386;">
 Admin account से login करें
 </p>
 
 <input
-id="adminEmail"
+id="email"
 type="email"
 placeholder="Admin Email"
-style="
-width:100%;
-padding:13px;
-margin:6px 0;
-border:1px solid #dce2ea;
-border-radius:7px;
-"
 >
 
 <input
-id="adminPassword"
+id="password"
 type="password"
 placeholder="Password"
-style="
-width:100%;
-padding:13px;
-margin:6px 0;
-border:1px solid #dce2ea;
-border-radius:7px;
-"
 >
 
 <button
-onclick="adminLogin()"
-style="
-width:100%;
-margin-top:10px;
-padding:13px;
-background:#1769e0;
-color:white;
-border:0;
-border-radius:7px;
-font-weight:bold;
-cursor:pointer;
-">
-
+onclick="login()"
+style="width:100%;margin-top:10px;"
+>
 Login
-
 </button>
 
-<p
-id="loginMessage"
-style="
-color:#e53935;
-margin-top:12px;
-font-size:13px;
-">
+<p id="loginMsg" class="message"></p>
+
+</div>
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div id="adminPanel" class="hidden">
+
+<header>
+
+<div>
+<h1>🛠️ JobDagar Admin</h1>
+<p style="font-size:12px;margin-top:4px;">
+Website Management
 </p>
-
 </div>
-<script>
 
-async function adminLogin(){
+<button class="red" onclick="logout()">
+Logout
+</button>
 
-    const email =
-    document.getElementById("adminEmail").value.trim();
-
-    const password =
-    document.getElementById("adminPassword").value;
-
-    const message =
-    document.getElementById("loginMessage");
+</header>
 
 
-    if(email === "" || password === ""){
-
-        message.innerText =
-        "Email और Password दोनों भरें।";
-
-        return;
-
-    }
+<div class="container">
 
 
-    const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
+<!-- DASHBOARD -->
 
-        email: email,
+<div class="cards">
 
-        password: password
+<div class="card">
+💼
+<h3>Total Jobs</h3>
+<strong id="jobsCount">0</strong>
+</div>
 
-    });
+<div class="card">
+📝
+<h3>Applications</h3>
+<strong id="applicationsCount">0</strong>
+</div>
 
+<div class="card">
+🏢
+<h3>Employers</h3>
+<strong id="employersCount">0</strong>
+</div>
 
-    if(error){
-
-        message.innerText =
-        "Login failed: " + error.message;
-
-        return;
-
-    }
-
-
-    document.getElementById("adminLogin")
-    .style.display = "none";
-
-}
+<div class="card">
+📩
+<h3>Messages</h3>
+<strong id="messagesCount">0</strong>
+</div>
 
 </div>
 
-<script>
 
-async function adminLogin(){
+<!-- ADD JOB -->
 
-    const email =
-    document.getElementById("adminEmail").value.trim();
-
-    const password =
-    document.getElementById("adminPassword").value;
-
-    const message =
-    document.getElementById("loginMessage");
-
-    if(email === "" || password === ""){
-        message.innerText = "Email और Password दोनों भरें।";
-        return;
-    }
-
-    const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
-
-    if(error){
-        message.innerText =
-        "Login failed: " + error.message;
-        return;
-    }
-
-    document.getElementById("adminLogin").style.display = "none";
-}
-
-</script>
-<div id="jobForm" style="
-display:none;
-background:white;
-padding:25px;
-margin:25px auto;
-max-width:600px;
-border-radius:12px;
-border:1px solid #e4e9f0;
-">
+<div class="section">
 
 <h2>➕ Add New Job</h2>
 
-<input id="jobTitle" placeholder="Job Title"
-style="width:100%;padding:12px;margin:6px 0;">
+<input id="jobTitle" placeholder="Job Title">
 
-<input id="jobCompany" placeholder="Company Name"
-style="width:100%;padding:12px;margin:6px 0;">
+<input id="jobCompany" placeholder="Company Name">
 
-<input id="jobLocation" placeholder="Location"
-style="width:100%;padding:12px;margin:6px 0;">
+<input id="jobLocation" placeholder="Location">
 
-<input id="jobSalary" placeholder="Salary"
-style="width:100%;padding:12px;margin:6px 0;">
+<input id="jobSalary" placeholder="Salary">
 
-<input id="jobCategory" placeholder="Category"
-style="width:100%;padding:12px;margin:6px 0;">
+<input id="jobCategory" placeholder="Category">
 
-<input id="jobQualification" placeholder="Qualification"
-style="width:100%;padding:12px;margin:6px 0;">
+<input id="jobQualification" placeholder="Qualification">
 
-<textarea id="jobDescription"
+<input id="jobExperience" placeholder="Experience">
+
+<textarea
+id="jobDescription"
 placeholder="Job Description"
-style="width:100%;padding:12px;margin:6px 0;height:120px;">
-</textarea>
+></textarea>
 
-<button onclick="saveJob()">
+<button onclick="addJob()">
 💾 Save Job
 </button>
 
-<button onclick="hideAddJob()" style="background:#777;">
-Cancel
-</button>
-
-<p id="jobMessage"></p>
+<p id="jobMsg" class="message"></p>
 
 </div>
+
+
+<!-- JOBS -->
+
+<div class="section">
+
+<h2>💼 Manage Jobs</h2>
+
+<div id="jobsList">
+Loading jobs...
+</div>
+
+</div>
+
+
+<!-- APPLICATIONS -->
+
+<div class="section">
+
+<h2>📝 Applications</h2>
+
+<div id="applicationsList">
+Loading applications...
+</div>
+
+</div>
+
+
+<!-- MESSAGES -->
+
+<div class="section">
+
+<h2>📩 Contact Messages</h2>
+
+<div id="messagesList">
+Loading messages...
+</div>
+
+</div>
+
+
+<!-- EMPLOYERS -->
+
+<div class="section">
+
+<h2>🏢 Employers</h2>
+
+<div id="employersList">
+Loading employers...
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
 <script>
 
-function showAddJob(){
-    document.getElementById("jobForm").style.display = "block";
+/* =========================
+   SUPABASE CONNECTION
+========================= */
+
+const SUPABASE_URL =
+"https://ojloflsbvvucyumlgtus.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_VlsXGIvfOJFlaN5pnjVVlA_p22cMCGJ";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const msg =
+document.getElementById("loginMsg");
+
+msg.innerText = "";
+
+if(!email || !password){
+
+msg.innerText =
+"Email और Password भरें।";
+
+return;
 }
 
-function hideAddJob(){
-    document.getElementById("jobForm").style.display = "none";
+const {data,error} =
+await supabaseClient.auth.signInWithPassword({
+email:email,
+password:password
+});
+
+if(error){
+
+msg.innerText =
+"Login failed: " + error.message;
+
+return;
 }
 
-async function saveJob(){
+showAdmin();
 
-    const title = document.getElementById("jobTitle").value.trim();
-    const company = document.getElementById("jobCompany").value.trim();
-    const location = document.getElementById("jobLocation").value.trim();
-    const salary = document.getElementById("jobSalary").value.trim();
-    const category = document.getElementById("jobCategory").value.trim();
-    const qualification = document.getElementById("jobQualification").value.trim();
-    const description = document.getElementById("jobDescription").value.trim();
-
-    const message = document.getElementById("jobMessage");
-
-    if(!title || !company){
-        message.innerText = "Job Title और Company Name भरें।";
-        return;
-    }
-
-    const { error } = await supabaseClient
-        .from("jobs")
-        .insert({
-            title,
-            company,
-            location,
-            salary,
-            category,
-            qualification,
-            description
-        });
-
-    if(error){
-        message.innerText = "Job save नहीं हुई: " + error.message;
-        return;
-    }
-
-    message.style.color = "green";
-    message.innerText = "✅ Job successfully added!";
-
-    document.getElementById("jobTitle").value = "";
-    document.getElementById("jobCompany").value = "";
-    document.getElementById("jobLocation").value = "";
-    document.getElementById("jobSalary").value = "";
-    document.getElementById("jobCategory").value = "";
-    document.getElementById("jobQualification").value = "";
-    document.getElementById("jobDescription").value = "";
 }
+
+
+/* =========================
+   SHOW ADMIN
+========================= */
+
+async function showAdmin(){
+
+document.getElementById("loginBox")
+.style.display="none";
+
+document.getElementById("adminPanel")
+.classList.remove("hidden");
+
+await loadDashboard();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+location.reload();
+
+}
+
+
+/* =========================
+   ADD JOB
+========================= */
+
+async function addJob(){
+
+const title =
+document.getElementById("jobTitle").value.trim();
+
+const company =
+document.getElementById("jobCompany").value.trim();
+
+const location =
+document.getElementById("jobLocation").value.trim();
+
+const salary =
+document.getElementById("jobSalary").value.trim();
+
+const category =
+document.getElementById("jobCategory").value.trim();
+
+const qualification =
+document.getElementById("jobQualification").value.trim();
+
+const experience =
+document.getElementById("jobExperience").value.trim();
+
+const description =
+document.getElementById("jobDescription").value.trim();
+
+const msg =
+document.getElementById("jobMsg");
+
+if(!title || !company){
+
+msg.className="message error";
+
+msg.innerText =
+"Job Title और Company Name जरूरी हैं।";
+
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("jobs")
+.insert({
+title,
+company,
+location,
+salary,
+category,
+qualification,
+experience,
+description
+});
+
+if(error){
+
+msg.className="message error";
+
+msg.innerText =
+"Job save नहीं हुई: " + error.message;
+
+return;
+}
+
+msg.className="message success";
+
+msg.innerText =
+"✅ Job successfully added!";
+
+document
+.querySelectorAll("#jobTitle,#jobCompany,#jobLocation,#jobSalary,#jobCategory,#jobQualification,#jobExperience,#jobDescription")
+.forEach(x=>x.value="");
+
+loadDashboard();
+
+}
+
+
+/* =========================
+   DELETE JOB
+========================= */
+
+async function deleteJob(id){
+
+if(!confirm("क्या आप यह Job delete करना चाहते हैं?"))
+return;
+
+const {error} =
+await supabaseClient
+.from("jobs")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert("Delete failed: "+error.message);
+
+return;
+}
+
+loadDashboard();
+
+}
+
+
+/* =========================
+   LOAD DASHBOARD
+========================= */
+
+async function loadDashboard(){
+
+await loadJobs();
+
+await loadApplications();
+
+await loadMessages();
+
+await loadEmployers();
+
+}
+
+
+/* =========================
+   LOAD JOBS
+========================= */
+
+async function loadJobs(){
+
+const {data,error} =
+await supabaseClient
+.from("jobs")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(error){
+
+document.getElementById("jobsList")
+.innerText="Jobs load नहीं हो सकीं.";
+
+return;
+}
+
+document.getElementById("jobsCount")
+.innerText=data.length;
+
+const list =
+document.getElementById("jobsList");
+
+if(!data.length){
+
+list.innerHTML=
+"<p>अभी कोई Job नहीं है।</p>";
+
+return;
+}
+
+list.innerHTML="";
+
+data.forEach(job=>{
+
+list.innerHTML+=`
+
+<div class="job">
+
+<h3>${escapeHTML(job.title)}</h3>
+
+<p>
+🏢 ${escapeHTML(job.company)}
+</p>
+
+<p>
+📍 ${escapeHTML(job.location || "")}
+</p>
+
+<p>
+💰 ${escapeHTML(job.salary || "")}
+</p>
+
+<p>
+🎓 ${escapeHTML(job.qualification || "")}
+</p>
+
+<button
+class="red"
+onclick="deleteJob(${job.id})"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   APPLICATIONS
+========================= */
+
+async function loadApplications(){
+
+const {data,error} =
+await supabaseClient
+.from("applications")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(error){
+
+document.getElementById("applicationsList")
+.innerText="Applications load नहीं हो सकीं.";
+
+return;
+}
+
+document.getElementById("applicationsCount")
+.innerText=data.length;
+
+const list =
+document.getElementById("applicationsList");
+
+if(!data.length){
+
+list.innerHTML=
+"<p>अभी कोई application नहीं है।</p>";
+
+return;
+}
+
+list.innerHTML="";
+
+data.forEach(app=>{
+
+list.innerHTML+=`
+
+<div class="job">
+
+<h3>👤 ${escapeHTML(app.name)}</h3>
+
+<p>📱 ${escapeHTML(app.phone)}</p>
+
+<p>📧 ${escapeHTML(app.email || "")}</p>
+
+<p>📍 ${escapeHTML(app.city || "")}</p>
+
+<p>🎓 ${escapeHTML(app.education || "")}</p>
+
+<p>💼 ${escapeHTML(app.experience || "")}</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+async function loadMessages(){
+
+const {data,error} =
+await supabaseClient
+.from("contact_messages")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(error){
+
+document.getElementById("messagesList")
+.innerText="Messages load नहीं हो सके.";
+
+return;
+}
+
+document.getElementById("messagesCount")
+.innerText=data.length;
+
+const list =
+document.getElementById("messagesList");
+
+if(!data.length){
+
+list.innerHTML=
+"<p>अभी कोई message नहीं है।</p>";
+
+return;
+}
+
+list.innerHTML="";
+
+data.forEach(m=>{
+
+list.innerHTML+=`
+
+<div class="job">
+
+<h3>${escapeHTML(m.name)}</h3>
+
+<p>📧 ${escapeHTML(m.email || "")}</p>
+
+<p>📱 ${escapeHTML(m.phone || "")}</p>
+
+<p style="margin-top:8px;">
+${escapeHTML(m.message)}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   EMPLOYERS
+========================= */
+
+async function loadEmployers(){
+
+const {data,error} =
+await supabaseClient
+.from("employers")
+.select("*")
+.order("created_at",{ascending:false});
+
+if(error){
+
+document.getElementById("employersList")
+.innerText="Employers load नहीं हो सके.";
+
+return;
+}
+
+document.getElementById("employersCount")
+.innerText=data.length;
+
+const list =
+document.getElementById("employersList");
+
+if(!data.length){
+
+list.innerHTML=
+"<p>अभी कोई employer नहीं है।</p>";
+
+return;
+}
+
+list.innerHTML="";
+
+data.forEach(e=>{
+
+list.innerHTML+=`
+
+<div class="job">
+
+<h3>🏢 ${escapeHTML(e.company || e.name)}</h3>
+
+<p>👤 ${escapeHTML(e.name)}</p>
+
+<p>📧 ${escapeHTML(e.email || "")}</p>
+
+<p>📱 ${escapeHTML(e.phone || "")}</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(value){
+
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   SESSION CHECK
+========================= */
+
+async function checkSession(){
+
+const {data} =
+await supabaseClient.auth.getSession();
+
+if(data.session){
+
+showAdmin();
+
+}
+
+}
+
+checkSession();
 
 </script>
+
 </body>
 </html>
