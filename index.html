@@ -1,1061 +1,1877 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>JobDagar - Find Your Dream Job</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #1f2937;
-            line-height: 1.6;
-        }
-
-        /* ================= HEADER ================= */
-
-        header {
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: auto;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: #111827;
-        }
-
-        nav {
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #374151;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #2563eb;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            padding: 75px 20px;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 850px;
-            margin: auto;
-        }
-
-        .hero h1 {
-            font-size: 46px;
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-
-        .hero h1 span {
-            color: #facc15;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .search-box {
-            background: white;
-            padding: 8px;
-            max-width: 700px;
-            margin: auto;
-            border-radius: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .search-box input {
-            flex: 1;
-            border: none;
-            outline: none;
-            padding: 15px;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .search-box button {
-            border: none;
-            background: #f59e0b;
-            color: white;
-            padding: 0 25px;
-            border-radius: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .search-box button:hover {
-            background: #d97706;
-        }
-
-        /* ================= COMMON ================= */
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .section-title h2 {
-            font-size: 32px;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .section-title p {
-            color: #6b7280;
-        }
-
-        /* ================= CATEGORY ================= */
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .category-card {
-            text-decoration: none;
-            color: inherit;
-            background: #ffffff;
-            padding: 30px 20px;
-            border-radius: 14px;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .category-card:hover {
-            transform: translateY(-6px);
-            border-color: #2563eb;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
-        }
-
-        .category-icon {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
-
-        .category-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: #111827;
-        }
-
-        .category-card p {
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        /* ================= JOBS ================= */
-
-        .jobs-section {
-            background: #ffffff;
-        }
-
-        .jobs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .job-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 24px;
-            transition: 0.3s;
-        }
-
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-
-        .job-company {
-            color: #2563eb;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
-
-        .job-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #111827;
-        }
-
-        .job-info {
-            color: #6b7280;
-            font-size: 14px;
-            margin: 6px 0;
-        }
-
-        .job-button {
-            display: inline-block;
-            margin-top: 18px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 7px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .job-button:hover {
-            background: #1d4ed8;
-        }
-
-        /* ================= WHY US ================= */
-
-        .why-us {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .why-card {
-            background: white;
-            padding: 30px;
-            text-align: center;
-            border-radius: 14px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .why-card .icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .why-card h3 {
-            margin-bottom: 8px;
-        }
-
-        .why-card p {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        /* ================= CTA ================= */
-
-        .cta {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 65px 20px;
-        }
-
-        .cta h2 {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .cta p {
-            color: #d1d5db;
-            margin-bottom: 25px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #f59e0b;
-            color: white;
-            text-decoration: none;
-            padding: 13px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        .cta-button:hover {
-            background: #d97706;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            background: #0b1120;
-            color: white;
-            padding: 45px 20px 20px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-        }
-
-        .footer-logo {
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .footer-about p {
-            color: #9ca3af;
-            max-width: 450px;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 15px;
-        }
-
-        .footer-column a {
-            display: block;
-            color: #9ca3af;
-            text-decoration: none;
-            margin-bottom: 8px;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .copyright {
-            max-width: 1200px;
-            margin: 35px auto 0;
-            padding-top: 20px;
-            border-top: 1px solid #1f2937;
-            text-align: center;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 900px) {
-
-            .categories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .jobs {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .why-us {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .navbar {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            nav {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 55px 15px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .search-box {
-                flex-direction: column;
-                padding: 8px;
-            }
-
-            .search-box button {
-                padding: 13px;
-            }
-
-            .categories,
-            .jobs,
-            .why-us {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title h2 {
-                font-size: 27px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JobDagar - नौकरी के अवसर खोजें</title>
+
+<meta name="description" content="JobDagar पर Private, Government, Work From Home और Freshers Jobs खोजें।">
+
+<style>
+
+/* ===== RESET ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#172033;
+    line-height:1.6;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+.container{
+    width:92%;
+    max-width:1150px;
+    margin:auto;
+}
+
+
+/* ===== HEADER ===== */
+
+header{
+    background:#ffffff;
+    border-bottom:1px solid #e7eaf0;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.navbar{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+
+/* ===== LOGO ===== */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:11px;
+    background:#2563eb;
+    color:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:bold;
+    box-shadow:0 6px 15px rgba(37,99,235,.25);
+}
+
+.logo-text{
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:-.5px;
+    color:#172033;
+}
+
+.logo-text span{
+    color:#2563eb;
+}
+
+
+/* ===== NAVIGATION ===== */
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#374151;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
+}
+
+.post-job{
+    background:#2563eb;
+    color:#ffffff !important;
+    padding:10px 17px;
+    border-radius:7px;
+}
+
+.post-job:hover{
+    background:#1d4ed8;
+}
+
+
+/* ===== HERO ===== */
+
+.hero{
+    background:
+    radial-gradient(circle at 10% 20%,rgba(255,255,255,.12),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(255,255,255,.10),transparent 25%),
+    linear-gradient(135deg,#1d4ed8,#2563eb);
+    color:white;
+    padding:78px 0 90px;
+}
+
+.hero-content{
+    text-align:center;
+    max-width:850px;
+    margin:auto;
+}
+
+.hero-badge{
+    display:inline-block;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.25);
+    padding:7px 15px;
+    border-radius:30px;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:48px;
+    line-height:1.15;
+    margin-bottom:18px;
+    letter-spacing:-1px;
+}
+
+.hero h1 span{
+    color:#facc15;
+}
+
+.hero p{
+    font-size:18px;
+    color:#e5edff;
+    margin-bottom:30px;
+}
+
+
+/* ===== SEARCH ===== */
+
+.search-area{
+    background:#ffffff;
+    padding:8px;
+    border-radius:10px;
+    max-width:780px;
+    margin:auto;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.search-area input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:15px;
+    font-size:16px;
+    color:#172033;
+    min-width:0;
+}
+
+.search-btn{
+    border:0;
+    background:#f59e0b;
+    color:#ffffff;
+    padding:0 28px;
+    border-radius:7px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.search-btn:hover{
+    background:#d97706;
+}
+
+
+/* ===== HERO STATS ===== */
+
+.hero-stats{
+    margin:38px auto 0;
+    display:flex;
+    justify-content:center;
+    gap:60px;
+}
+
+.hero-stat strong{
+    display:block;
+    font-size:24px;
+}
+
+.hero-stat span{
+    color:#dbe7ff;
+    font-size:13px;
+}
+
+
+/* ===== SECTION ===== */
+
+.section{
+    padding:70px 0;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:38px;
+}
+
+.section-heading h2{
+    font-size:31px;
+    color:#172033;
+    margin-bottom:7px;
+}
+
+.section-heading p{
+    color:#6b7280;
+    font-size:15px;
+}
+
+
+/* ===== CATEGORIES ===== */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.category-card{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    padding:28px 18px;
+    text-align:center;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.category-card:hover{
+    transform:translateY(-6px);
+    border-color:#2563eb;
+    box-shadow:0 12px 30px rgba(37,99,235,.12);
+}
+
+.category-icon{
+    width:58px;
+    height:58px;
+    margin:0 auto 15px;
+    border-radius:14px;
+    background:#eff6ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.category-card h3{
+    font-size:18px;
+    margin-bottom:6px;
+}
+
+.category-card p{
+    color:#6b7280;
+    font-size:13px;
+}
+
+
+/* ===== JOB SECTION ===== */
+
+.jobs-section{
+    background:#ffffff;
+}
+
+.job-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+    gap:15px;
+}
+
+.job-result{
+    color:#6b7280;
+    font-size:14px;
+}
+
+.all-jobs{
+    border:1px solid #2563eb;
+    background:#ffffff;
+    color:#2563eb;
+    padding:9px 16px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.all-jobs:hover{
+    background:#2563eb;
+    color:white;
+}
+
+
+/* ===== JOB CARDS ===== */
+
+.jobs-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.job-card{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    padding:23px;
+    transition:.25s;
+}
+
+.job-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(0,0,0,.07);
+}
+
+.job-type{
+    display:inline-block;
+    background:#eff6ff;
+    color:#2563eb;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.job-card h3{
+    font-size:19px;
+    margin-bottom:9px;
+}
+
+.company{
+    color:#2563eb;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.job-info{
+    color:#6b7280;
+    font-size:13px;
+    margin:6px 0;
+}
+
+.job-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:17px;
+}
+
+.details-btn{
+    flex:1;
+    border:0;
+    background:#eff6ff;
+    color:#2563eb;
+    padding:10px;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.apply-btn{
+    flex:1;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:10px;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.apply-btn:hover{
+    background:#1d4ed8;
+}
+
+.details-btn:hover{
+    background:#dbeafe;
+}
+
+.no-jobs{
+    display:none;
+    text-align:center;
+    padding:45px 20px;
+    color:#6b7280;
+}
+
+
+/* ===== WHY JOBDAGAR ===== */
+
+.why-section{
+    background:#f5f7fb;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.why-card{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    padding:30px 22px;
+    text-align:center;
+}
+
+.why-icon{
+    font-size:36px;
+    margin-bottom:12px;
+}
+
+.why-card h3{
+    margin-bottom:8px;
+}
+
+.why-card p{
+    color:#6b7280;
+    font-size:14px;
+}
+
+
+/* ===== EMPLOYER CTA ===== */
+
+.employer{
+    background:#111827;
+    color:white;
+}
+
+.employer-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+
+.employer h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.employer p{
+    color:#cbd5e1;
+}
+
+.employer-btn{
+    display:inline-block;
+    background:#f59e0b;
+    color:white;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:7px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+
+/* ===== FOOTER ===== */
+
+footer{
+    background:#0b1120;
+    color:white;
+    padding:55px 0 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-logo{
+    font-size:25px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.footer-logo span{
+    color:#60a5fa;
+}
+
+.footer-about p{
+    color:#9ca3af;
+    max-width:430px;
+    font-size:14px;
+}
+
+.footer-col h3{
+    margin-bottom:15px;
+}
+
+.footer-col a{
+    display:block;
+    text-decoration:none;
+    color:#9ca3af;
+    margin-bottom:9px;
+    font-size:14px;
+}
+
+.footer-col a:hover{
+    color:white;
+}
+
+.copyright{
+    text-align:center;
+    color:#6b7280;
+    border-top:1px solid #1f2937;
+    margin-top:35px;
+    padding-top:20px;
+    font-size:13px;
+}
+
+
+/* ===== MODAL ===== */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    background:#ffffff;
+    width:100%;
+    max-width:520px;
+    border-radius:14px;
+    padding:30px;
+    position:relative;
+}
+
+.close-modal{
+    position:absolute;
+    right:15px;
+    top:10px;
+    border:0;
+    background:none;
+    font-size:27px;
+    cursor:pointer;
+    color:#6b7280;
+}
+
+.modal-box h2{
+    margin-bottom:8px;
+    padding-right:25px;
+}
+
+.modal-company{
+    color:#2563eb;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.modal-info{
+    color:#555;
+    margin:9px 0;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .jobs-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .navbar{
+        flex-direction:column;
+        padding:13px 0;
+    }
+
+    .nav-links{
+        gap:13px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .post-job{
+        display:none;
+    }
+
+    .hero{
+        padding:55px 0 65px;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .search-area{
+        flex-direction:column;
+    }
+
+    .search-btn{
+        padding:13px;
+    }
+
+    .hero-stats{
+        gap:25px;
+    }
+
+    .hero-stat strong{
+        font-size:19px;
+    }
+
+    .categories,
+    .jobs-grid,
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .job-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .employer-box{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
+<!-- ===== HEADER ===== -->
 
-    <!-- ================= HEADER ================= -->
+<header>
 
-    <header>
-        <div class="navbar">
+<div class="container navbar">
 
-            <a href="#" class="logo">
-                Job<span>Dagar</span>
-            </a>
+<a href="#" class="logo">
 
-            <nav>
-                <a href="#">Home</a>
-                <a href="#categories">Jobs</a>
-                <a href="#latest-jobs">Latest Jobs</a>
-                <a href="#about">About</a>
-            </nav>
+<div class="logo-icon">J</div>
 
-        </div>
-    </header>
+<div class="logo-text">
+Job<span>Dagar</span>
+</div>
 
+</a>
 
-    <!-- ================= HERO ================= -->
 
-    <section class="hero">
+<div class="nav-links">
 
-        <div class="hero-content">
+<a href="#">Home</a>
 
-            <h1>
-                Find Your <span>Dream Job</span>
-            </h1>
+<a href="#categories">Categories</a>
 
-            <p>
-                नौकरी खोजने का आसान और भरोसेमंद प्लेटफॉर्म
-            </p>
+<a href="#jobs">Jobs</a>
 
-            <div class="search-box">
+<a href="#about">About</a>
 
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Job title, company या keyword खोजें..."
-                >
+<a href="#employer" class="post-job">
+Post a Job
+</a>
 
-                <button onclick="searchJobs()">
-                    Search
-                </button>
+</div>
 
-            </div>
+</div>
 
-        </div>
+</header>
 
-    </section>
 
+<!-- ===== HERO ===== -->
 
-    <!-- ================= CATEGORIES ================= -->
+<section class="hero">
 
-    <section id="categories">
+<div class="container hero-content">
 
-        <div class="container">
+<div class="hero-badge">
+🇮🇳 भारत में नौकरी के अवसर
+</div>
 
-            <div class="section-title">
+<h1>
+नौकरी का अगला <span>अवसर</span> यहाँ खोजें
+</h1>
 
-                <h2>Find Jobs By Category</h2>
+<p>
+Private, Government, Work From Home और Freshers Jobs एक ही जगह
+</p>
 
-                <p>
-                    अपनी पसंद की नौकरी की category चुनें
-                </p>
 
-            </div>
+<div class="search-area">
 
+<input
+type="text"
+id="searchInput"
+placeholder="Job title, company या keyword खोजें..."
+>
 
-            <div class="categories">
+<button
+class="search-btn"
+onclick="searchJobs()"
+>
+🔍 Search Jobs
+</button>
 
+</div>
 
-                <a href="#jobs" class="category-card">
-                    onclick="filterJobs('private')">
-                    <div class="category-icon">
-                        💼
-                    </div>
 
-                    <h3>
-                        Private Jobs
-                    </h3>
+<div class="hero-stats">
 
-                    <p>
-                        Private companies की नौकरियाँ
-                    </p>
+<div class="hero-stat">
+<strong>100+</strong>
+<span>Job Opportunities</span>
+</div>
 
-                </a>
+<div class="hero-stat">
+<strong>4</strong>
+<span>Job Categories</span>
+</div>
 
+<div class="hero-stat">
+<strong>24/7</strong>
+<span>Easy Access</span>
+</div>
 
-                <a href="#jobs" class="category-card">
-                    onclick="filterJobs('government')">
-                    <div class="category-icon">
-                        🏛️
-                    </div>
+</div>
 
-                    <h3>
-                        Government Jobs
-                    </h3>
+</div>
 
-                    <p>
-                        सरकारी नौकरी की जानकारी
-                    </p>
+</section>
 
-                </a>
 
+<!-- ===== CATEGORIES ===== -->
 
-                <a href="#jobs" class="category-card">
-                    onclick="filterJobs('remote')">
-                    <div class="category-icon">
-                        🏠
-                    </div>
+<section
+class="section"
+id="categories"
+>
 
-                    <h3>
-                        Work From Home
-                    </h3>
+<div class="container">
 
-                    <p>
-                        घर से काम करने वाली नौकरियाँ
-                    </p>
+<div class="section-heading">
 
-                </a>
+<h2>
+नौकरी की Category चुनें
+</h2>
 
+<p>
+अपनी पसंद की category पर क्लिक करके jobs देखें
+</p>
 
-                <a href="#jobs" class="category-card">
-                    onclick="filterJobs('fresher')">
-                    <div class="category-icon">
-                        🎓
-                    </div>
+</div>
 
-                    <h3>
-                        Freshers Jobs
-                    </h3>
 
-                    <p>
-                        Fresher और नए candidates के लिए
-                    </p>
+<div class="categories">
 
-                </a>
 
-            </div>
+<div
+class="category-card"
+onclick="filterJobs('private')"
+>
 
-        </div>
+<div class="category-icon">
+💼
+</div>
 
-    </section>
+<h3>
+Private Jobs
+</h3>
 
+<p>
+Private companies की नौकरियाँ
+</p>
 
-    <!-- ================= LATEST JOBS ================= -->
+</div>
 
-    <section id="latest-jobs" class="jobs-section">
 
-        <div class="container">
 
-            <div class="section-title">
+<div
+class="category-card"
+onclick="filterJobs('government')"
+>
 
-                <h2>
-                    Latest Jobs
-                </h2>
+<div class="category-icon">
+🏛️
+</div>
 
-                <p>
-                    अभी उपलब्ध नौकरी के अवसर
-                </p>
+<h3>
+Government Jobs
+</h3>
 
-            </div>
+<p>
+सरकारी नौकरी की जानकारी
+</p>
 
+</div>
 
-            <div class="jobs" id="jobs">
 
 
-                <div class="job-card">
+<div
+class="category-card"
+onclick="filterJobs('remote')"
+>
 
-                    <div class="job-company">
-                        Private Company
-                    </div>
+<div class="category-icon">
+🏠
+</div>
 
-                    <h3>
-                        Sales Executive
-                    </h3>
+<h3>
+Work From Home
+</h3>
 
-                    <div class="job-info">
-                        📍 Jaipur, Rajasthan
-                    </div>
+<p>
+घर से काम करने वाली नौकरियाँ
+</p>
 
-                    <div class="job-info">
-                        💰 ₹18,000 - ₹25,000 / Month
-                    </div>
+</div>
 
-                    <div class="job-info">
-                        🎓 12th / Graduate
-                    </div>
 
-                    <a href="#" class="job-button">
-                        View Job
-                    </a>
 
-                </div>
+<div
+class="category-card"
+onclick="filterJobs('fresher')"
+>
 
+<div class="category-icon">
+🎓
+</div>
 
-                <div class="job-card">
+<h3>
+Freshers Jobs
+</h3>
 
-                    <div class="job-company">
-                        Government Job
-                    </div>
+<p>
+नए candidates के लिए jobs
+</p>
 
-                    <h3>
-                        Junior Assistant
-                    </h3>
+</div>
 
-                    <div class="job-info">
-                        📍 Rajasthan
-                    </div>
 
-                    <div class="job-info">
-                        🏛️ Government Department
-                    </div>
+</div>
 
-                    <div class="job-info">
-                        🎓 Graduate
-                    </div>
+</div>
 
-                    <a href="#" class="job-button">
-                        View Job
-                    </a>
+</section>
 
-                </div>
 
 
-                <div class="job-card">
+<!-- ===== JOBS ===== -->
 
-                    <div class="job-company">
-                        Work From Home
-                    </div>
+<section
+class="section jobs-section"
+id="jobs"
+>
 
-                    <h3>
-                        Customer Support
-                    </h3>
+<div class="container">
 
-                    <div class="job-info">
-                        📍 Remote
-                    </div>
+<div class="section-heading">
 
-                    <div class="job-info">
-                        💰 ₹15,000 - ₹22,000 / Month
-                    </div>
+<h2>
+Latest Job Opportunities
+</h2>
 
-                    <div class="job-info">
-                        🎓 12th Pass
-                    </div>
+<p>
+अभी उपलब्ध नौकरी के अवसर
+</p>
 
-                    <a href="#" class="job-button">
-                        View Job
-                    </a>
+</div>
 
-                </div>
 
+<div class="job-top">
 
-                <div class="job-card">
+<div
+class="job-result"
+id="jobResult"
+>
+सभी jobs दिखाई जा रही हैं
+</div>
 
-                    <div class="job-company">
-                        Private Company
-                    </div>
 
-                    <h3>
-                        Data Entry Operator
-                    </h3>
+<button
+class="all-jobs"
+onclick="showAllJobs()"
+>
+सभी Jobs
+</button>
 
-                    <div class="job-info">
-                        📍 Delhi / Remote
-                    </div>
+</div>
 
-                    <div class="job-info">
-                        💰 ₹16,000 - ₹24,000 / Month
-                    </div>
 
-                    <div class="job-info">
-                        🎓 12th Pass
-                    </div>
+<div
+class="jobs-grid"
+id="jobsGrid"
+>
 
-                    <a href="#" class="job-button">
-                        View Job
-                    </a>
 
-                </div>
+<!-- JOB 1 -->
 
+<div
+class="job-card"
+data-category="private"
+>
 
-                <div class="job-card">
+<div class="job-type">
+PRIVATE JOB
+</div>
 
-                    <div class="job-company">
-                        Freshers Job
-                    </div>
+<h3>
+Sales Executive
+</h3>
 
-                    <h3>
-                        Junior Sales Associate
-                    </h3>
+<div class="company">
+Private Company
+</div>
 
-                    <div class="job-info">
-                        📍 Gurugram
-                    </div>
+<div class="job-info">
+📍 Jaipur, Rajasthan
+</div>
 
-                    <div class="job-info">
-                        💰 ₹20,000 - ₹28,000 / Month
-                    </div>
+<div class="job-info">
+💰 ₹18,000 - ₹25,000 / Month
+</div>
 
-                    <div class="job-info">
-                        🎓 Fresher / Graduate
-                    </div>
+<div class="job-info">
+🎓 12th / Graduate
+</div>
 
-                    <a href="#" class="job-button">
-                        View Job
-                    </a>
 
-                </div>
+<div class="job-buttons">
 
+<button
+class="details-btn"
+onclick="showDetails(
+'Sales Executive',
+'Private Company',
+'Jaipur, Rajasthan',
+'₹18,000 - ₹25,000 / Month',
+'12th / Graduate'
+)"
+>
+Details
+</button>
 
-                <div class="job-card">
 
-                    <div class="job-company">
-                        Private Company
-                    </div>
+<button
+class="apply-btn"
+onclick="applyJob()"
+>
+Apply
+</button>
 
-                    <h3>
-                        Office Assistant
-                    </h3>
+</div>
 
-                    <div class="job-info">
-                        📍 Jaipur
-                    </div>
+</div>
 
-                    <div class="job-info">
-                        💰 ₹14,000 - ₹20,000 / Month
-                    </div>
 
-                    <div class="job-info">
-                        🎓 12th Pass
-                    </div>
 
-                    <a href="#" class="job-button">
-                        View Job
-                    </a>
+<!-- JOB 2 -->
 
-                </div>
+<div
+class="job-card"
+data-category="government"
+>
 
+<div class="job-type">
+GOVERNMENT JOB
+</div>
 
-            </div>
+<h3>
+Junior Assistant
+</h3>
 
-        </div>
+<div class="company">
+Government Department
+</div>
 
-    </section>
+<div class="job-info">
+📍 Rajasthan
+</div>
 
+<div class="job-info">
+🏛️ Government Department
+</div>
 
-    <!-- ================= WHY JOBDAGAR ================= -->
+<div class="job-info">
+🎓 Graduate
+</div>
 
-    <section id="about">
 
-        <div class="container">
+<div class="job-buttons">
 
-            <div class="section-title">
+<button
+class="details-btn"
+onclick="showDetails(
+'Junior Assistant',
+'Government Department',
+'Rajasthan',
+'Government Job',
+'Graduate'
+)"
+>
+Details
+</button>
 
-                <h2>
-                    Why Choose JobDagar?
-                </h2>
 
-                <p>
-                    नौकरी खोजने वालों के लिए आसान और उपयोगी platform
-                </p>
+<button
+class="apply-btn"
+onclick="applyJob()"
+>
+Apply
+</button>
 
-            </div>
+</div>
 
+</div>
 
-            <div class="why-us">
 
 
-                <div class="why-card">
+<!-- JOB 3 -->
 
-                    <div class="icon">
-                        🔎
-                    </div>
+<div
+class="job-card"
+data-category="remote"
+>
 
-                    <h3>
-                        Easy Job Search
-                    </h3>
+<div class="job-type">
+WORK FROM HOME
+</div>
 
-                    <p>
-                        अपनी जरूरत के अनुसार नौकरी आसानी से खोजें।
-                    </p>
+<h3>
+Customer Support
+</h3>
 
-                </div>
+<div class="company">
+Remote Company
+</div>
 
+<div class="job-info">
+📍 Work From Home
+</div>
 
-                <div class="why-card">
+<div class="job-info">
+💰 ₹15,000 - ₹22,000 / Month
+</div>
 
-                    <div class="icon">
-                        📱
-                    </div>
+<div class="job-info">
+🎓 12th Pass
+</div>
 
-                    <h3>
-                        Mobile Friendly
-                    </h3>
 
-                    <p>
-                        मोबाइल और कंप्यूटर दोनों पर आसानी से इस्तेमाल करें।
-                    </p>
+<div class="job-buttons">
 
-                </div>
+<button
+class="details-btn"
+onclick="showDetails(
+'Customer Support',
+'Remote Company',
+'Work From Home',
+'₹15,000 - ₹22,000 / Month',
+'12th Pass'
+)"
+>
+Details
+</button>
 
 
-                <div class="why-card">
+<button
+class="apply-btn"
+onclick="applyJob()"
+>
+Apply
+</button>
 
-                    <div class="icon">
-                        ⚡
-                    </div>
+</div>
 
-                    <h3>
-                        Simple & Fast
-                    </h3>
+</div>
 
-                    <p>
-                        बिना किसी परेशानी के नौकरी की जानकारी प्राप्त करें।
-                    </p>
 
-                </div>
 
+<!-- JOB 4 -->
 
-            </div>
+<div
+class="job-card"
+data-category="private"
+>
 
-        </div>
+<div class="job-type">
+PRIVATE JOB
+</div>
 
-    </section>
+<h3>
+Data Entry Operator
+</h3>
 
+<div class="company">
+Private Company
+</div>
 
-    <!-- ================= CTA ================= -->
+<div class="job-info">
+📍 Delhi
+</div>
 
-    <section class="cta">
+<div class="job-info">
+💰 ₹16,000 - ₹24,000 / Month
+</div>
 
-        <h2>
-            अपना अगला Career Opportunity खोजें
-        </h2>
+<div class="job-info">
+🎓 12th Pass
+</div>
 
-        <p>
-            JobDagar के साथ अपनी नौकरी की तलाश शुरू करें।
-        </p>
 
-        <a href="#latest-jobs" class="cta-button">
-            Explore Jobs
-        </a>
+<div class="job-buttons">
 
-    </section>
+<button
+class="details-btn"
+onclick="showDetails(
+'Data Entry Operator',
+'Private Company',
+'Delhi',
+'₹16,000 - ₹24,000 / Month',
+'12th Pass'
+)"
+>
+Details
+</button>
 
 
-    <!-- ================= FOOTER ================= -->
+<button
+class="apply-btn"
+onclick="applyJob()"
+>
+Apply
+</button>
 
-    <footer>
+</div>
 
-        <div class="footer-content">
+</div>
 
 
-            <div class="footer-about">
 
-                <div class="footer-logo">
-                    JobDagar
-                </div>
+<!-- JOB 5 -->
 
-                <p>
-                    JobDagar एक simple job platform है जहाँ
-                    job seekers अलग-अलग categories में
-                    नौकरी के अवसर खोज सकते हैं।
-            </p>
+<div
+class="job-card"
+data-category="fresher"
+>
 
-        </div>
+<div class="job-type">
+FRESHERS JOB
+</div>
 
+<h3>
+Junior Sales Associate
+</h3>
 
-        <div class="footer-column">
+<div class="company">
+Growing Company
+</div>
 
-            <h3>Quick Links</h3>
+<div class="job-info">
+📍 Gurugram
+</div>
 
-            <a href="#">Home</a>
+<div class="job-info">
+💰 ₹20,000 - ₹28,000 / Month
+</div>
 
-            <a href="#categories">
-                Job Categories
-            </a>
+<div class="job-info">
+🎓 Fresher / Graduate
+</div>
 
-            <a href="#latest-jobs">
-                Latest Jobs
-            </a>
 
-            <a href="#about">
-                About
-            </a>
+<div class="job-buttons">
 
-        </div>
+<button
+class="details-btn"
+onclick="showDetails(
+'Junior Sales Associate',
+'Growing Company',
+'Gurugram',
+'₹20,000 - ₹28,000 / Month',
+'Fresher / Graduate'
+)"
+>
+Details
+</button>
 
 
-        <div class="footer-column">
+<button
+class="apply-btn"
+onclick="applyJob()"
+>
+Apply
+</button>
 
-            <h3>Job Categories</h3>
+</div>
 
-            <a href="#jobs">
-                Private Jobs
-            </a>
+</div>
 
-            <a href="#jobs">
-                Government Jobs
-            </a>
 
-            <a href="#jobs">
-                Work From Home
-            </a>
 
-            <a href="#jobs">
-                Freshers Jobs
-            </a>
+<!-- JOB 6 -->
 
-        </div>
+<div
+class="job-card"
+data-category="private"
+>
 
-    </div>
+<div class="job-type">
+PRIVATE JOB
+</div>
 
+<h3>
+Office Assistant
+</h3>
 
-    <div class="copyright">
+<div class="company">
+Private Company
+</div>
 
-        ©️ 2026 JobDagar. All Rights Reserved.
+<div class="job-info">
+📍 Jaipur
+</div>
 
-    </div>
+<div class="job-info">
+💰 ₹14,000 - ₹20,000 / Month
+</div>
+
+<div class="job-info">
+🎓 12th Pass
+</div>
+
+
+<div class="job-buttons">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Office Assistant',
+'Private Company',
+'Jaipur',
+'₹14,000 - ₹20,000 / Month',
+'12th Pass'
+)"
+>
+Details
+</button>
+
+
+<button
+class="apply-btn"
+onclick="applyJob()"
+>
+Apply
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="no-jobs"
+id="noJobs"
+>
+इस category में अभी कोई job उपलब्ध नहीं है।
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ===== WHY JOBDAGAR ===== -->
+
+<section
+class="section why-section"
+id="about"
+>
+
+<div class="container">
+
+<div class="section-heading">
+
+<h2>
+क्यों चुनें JobDagar?
+</h2>
+
+<p>
+नौकरी खोजने को आसान और बेहतर बनाने की कोशिश
+</p>
+
+</div>
+
+
+<div class="why-grid">
+
+
+<div class="why-card">
+
+<div class="why-icon">
+🔎
+</div>
+
+<h3>
+Easy Job Search
+</h3>
+
+<p>
+एक ही जगह अलग-अलग categories की jobs खोजें।
+</p>
+
+</div>
+
+
+
+<div class="why-card">
+
+<div class="why-icon">
+📱
+</div>
+
+<h3>
+Mobile Friendly
+</h3>
+
+<p>
+मोबाइल और कंप्यूटर दोनों पर आसानी से इस्तेमाल करें।
+</p>
+
+</div>
+
+
+
+<div class="why-card">
+
+<div class="why-icon">
+⚡
+</div>
+
+<h3>
+Simple & Fast
+</h3>
+
+<p>
+सरल design के साथ जल्दी नौकरी के अवसर खोजें।
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===== EMPLOYER SECTION ===== -->
+
+<section
+class="section employer"
+id="employer"
+>
+
+<div class="container employer-box">
+
+<div>
+
+<h2>
+क्या आप Job देने वाले हैं?
+</h2>
+
+<p>
+अपनी vacancy को JobDagar पर दिखाने का विकल्प जल्द उपलब्ध होगा।
+</p>
+
+</div>
+
+
+<a
+href="#"
+class="employer-btn"
+onclick="employerMessage();return false;"
+>
+Post a Job
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+<div class="container footer-grid">
+
+
+<div>
+
+<div class="footer-logo">
+Job<span>Dagar</span>
+</div>
+
+<div class="footer-about">
+
+<p>
+JobDagar एक आसान job platform है जहाँ
+job seekers Private, Government,
+Work From Home और Freshers Jobs खोज सकते हैं।
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="footer-col">
+
+<h3>
+Quick Links
+</h3>
+
+<a href="#">
+Home
+</a>
+
+<a href="#categories">
+Categories
+</a>
+
+<a href="#jobs">
+Latest Jobs
+</a>
+
+<a href="#about">
+About
+</a>
+
+</div>
+
+
+
+<div class="footer-col">
+
+<h3>
+Job Categories
+</h3>
+
+<a
+href="#jobs"
+onclick="filterJobs('private')"
+>
+Private Jobs
+</a>
+
+<a
+href="#jobs"
+onclick="filterJobs('government')"
+>
+Government Jobs
+</a>
+
+<a
+href="#jobs"
+onclick="filterJobs('remote')"
+>
+Work From Home
+</a>
+
+<a
+href="#jobs"
+onclick="filterJobs('fresher')"
+>
+Freshers Jobs
+</a>
+
+</div>
+
+
+</div>
+
+
+<div class="container copyright">
+
+©️ 2026 JobDagar. All Rights Reserved.
+
+</div>
 
 </footer>
 
 
+<!-- ===== JOB DETAILS MODAL ===== -->
+
+<div
+class="modal"
+id="jobModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close-modal"
+onclick="closeModal()"
+>
+×
+</button>
+
+<h2 id="modalTitle">
+Job Title
+</h2>
+
+<div
+class="modal-company"
+id="modalCompany"
+>
+Company
+</div>
+
+<div
+class="modal-info"
+id="modalLocation"
+>
+📍 Location
+</div>
+
+<div
+class="modal-info"
+id="modalSalary"
+>
+💰 Salary
+</div>
+
+<div
+class="modal-info"
+id="modalEducation"
+>
+🎓 Education
+</div>
+
+<div
+class="modal-info"
+>
+📋 Job details और application information यहाँ दिखाई जाएगी।
+</div>
+
+<button
+class="apply-btn"
+style="width:100%;margin-top:20px;"
+onclick="applyJob()"
+>
+Apply For This Job
+</button>
+
+</div>
+
+</div>
 <script>
 
-function searchJobs() {
+/* ===== SEARCH JOBS ===== */
 
-    const input =
-        document.getElementById("searchInput");
+function searchJobs(){
 
-    const searchText =
-        input.value.toLowerCase().trim();
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
 
-    const jobCards =
+    let jobs =
         document.querySelectorAll(".job-card");
 
+    let count = 0;
 
-    if (searchText === "") {
+    jobs.forEach(function(job){
 
-        jobCards.forEach(function(card) {
-            card.style.display = "block";
-        });
+        let text =
+            job.innerText.toLowerCase();
 
-        return;
-    }
+        if(
+            input === "" ||
+            text.includes(input)
+        ){
 
+            job.style.display = "block";
+            count++;
 
-    jobCards.forEach(function(card) {
+        }else{
 
-        const jobText =
-            card.innerText.toLowerCase();
-
-        if (jobText.includes(searchText)) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
+            job.style.display = "none";
 
         }
 
     });
+
+
+    document.getElementById("noJobs").style.display =
+        count === 0 ? "block" : "none";
+
+
+    document.getElementById("jobResult").innerText =
+        input === ""
+        ? "सभी jobs दिखाई जा रही हैं"
+        : count + " jobs मिलीं";
+
+}
+
+
+/* ===== CATEGORY FILTER ===== */
+
+function filterJobs(category){
+
+    let jobs =
+        document.querySelectorAll(".job-card");
+
+    let count = 0;
+
+
+    jobs.forEach(function(job){
+
+        let jobCategory =
+            job.getAttribute("data-category");
+
+
+        if(jobCategory === category){
+
+            job.style.display = "block";
+
+            count++;
+
+        }else{
+
+            job.style.display = "none";
+
+        }
+
+    });
+
+
+    document.getElementById("noJobs").style.display =
+        count === 0 ? "block" : "none";
+
+
+    let names = {
+
+        private:"Private Jobs",
+
+        government:"Government Jobs",
+
+        remote:"Work From Home Jobs",
+
+        fresher:"Freshers Jobs"
+
+    };
+
+
+    document.getElementById("jobResult").innerText =
+        count + " " + names[category] + " दिखाई जा रही हैं";
 
 
     document
-        .getElementById("latest-jobs")
+        .getElementById("jobs")
         .scrollIntoView({
-            behavior: "smooth"
+            behavior:"smooth"
         });
 
-}function filterJobs(category) {
-
-    const jobCards = document.querySelectorAll(".job-card");
-
-    jobCards.forEach(function(card) {
-
-        const jobText = card.innerText.toLowerCase();
-
-        if (category === "private" && jobText.includes("private")) {
-            card.style.display = "block";
-        }
-
-        else if (category === "government" && jobText.includes("government")) {
-            card.style.display = "block";
-        }
-
-        else if (category === "remote" && jobText.includes("work from home")) {
-            card.style.display = "block";
-        }
-
-        else if (category === "fresher" && jobText.includes("fresher")) {
-            card.style.display = "block";
-        }
-
-        else {
-            card.style.display = "none";
-        }
-    });
-
-    document.getElementById("latest-jobs").scrollIntoView({
-        behavior: "smooth"
-    });
 }
+
+
+/* ===== SHOW ALL JOBS ===== */
+
+function showAllJobs(){
+
+    let jobs =
+        document.querySelectorAll(".job-card");
+
+
+    jobs.forEach(function(job){
+
+        job.style.display = "block";
+
+    });
+
+
+    document.getElementById("noJobs").style.display =
+        "none";
+
+
+    document.getElementById("jobResult").innerText =
+        "सभी jobs दिखाई जा रही हैं";
+
+
+    document
+        .getElementById("jobs")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* ===== JOB DETAILS ===== */
+
+function showDetails(
+    title,
+    company,
+    location,
+    salary,
+    education
+){
+
+    document.getElementById("modalTitle")
+        .innerText = title;
+
+
+    document.getElementById("modalCompany")
+        .innerText = "🏢 " + company;
+
+
+    document.getElementById("modalLocation")
+        .innerText = "📍 " + location;
+
+
+    document.getElementById("modalSalary")
+        .innerText = "💰 " + salary;
+
+
+    document.getElementById("modalEducation")
+        .innerText = "🎓 " + education;
+
+
+    document.getElementById("jobModal")
+        .style.display = "flex";
+
+}
+
+
+/* ===== CLOSE DETAILS ===== */
+
+function closeModal(){
+
+    document.getElementById("jobModal")
+        .style.display = "none";
+
+}
+
+
+/* ===== APPLY BUTTON ===== */
+
+function applyJob(){
+
+    alert(
+        "Apply system अभी तैयार किया जा रहा है। Real application link जल्द जोड़ा जाएगा।"
+    );
+
+}
+
+
+/* ===== EMPLOYER BUTTON ===== */
+
+function employerMessage(){
+
+    alert(
+        "Employer / Post Job feature जल्द उपलब्ध होगा।"
+    );
+
+}
+
+
+/* ===== CLOSE MODAL OUTSIDE ===== */
+
+document.getElementById("jobModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ===== ENTER KEY SEARCH ===== */
+
+document.getElementById("searchInput")
+.addEventListener(
+    "keypress",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            searchJobs();
+
+        }
+
+    }
+);
 
 </script>
 
