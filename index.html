@@ -523,7 +523,7 @@
 
 
                 <a href="#jobs" class="category-card">
-
+                    onclick="filterJobs('private')">
                     <div class="category-icon">
                         💼
                     </div>
@@ -540,7 +540,7 @@
 
 
                 <a href="#jobs" class="category-card">
-
+                    onclick="filterJobs('government')">
                     <div class="category-icon">
                         🏛️
                     </div>
@@ -557,7 +557,7 @@
 
 
                 <a href="#jobs" class="category-card">
-
+                    onclick="filterJobs('remote')">
                     <div class="category-icon">
                         🏠
                     </div>
@@ -574,7 +574,7 @@
 
 
                 <a href="#jobs" class="category-card">
-
+                    onclick="filterJobs('fresher')">
                     <div class="category-icon">
                         🎓
                     </div>
@@ -1023,6 +1023,38 @@ function searchJobs() {
             behavior: "smooth"
         });
 
+}function filterJobs(category) {
+
+    const jobCards = document.querySelectorAll(".job-card");
+
+    jobCards.forEach(function(card) {
+
+        const jobText = card.innerText.toLowerCase();
+
+        if (category === "private" && jobText.includes("private")) {
+            card.style.display = "block";
+        }
+
+        else if (category === "government" && jobText.includes("government")) {
+            card.style.display = "block";
+        }
+
+        else if (category === "remote" && jobText.includes("work from home")) {
+            card.style.display = "block";
+        }
+
+        else if (category === "fresher" && jobText.includes("fresher")) {
+            card.style.display = "block";
+        }
+
+        else {
+            card.style.display = "none";
+        }
+    });
+
+    document.getElementById("latest-jobs").scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 </script>
