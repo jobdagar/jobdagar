@@ -1996,6 +1996,41 @@ function submitApplication(){
 
 }
 </script>
+<div class="modal" id="applyModal">
 
+<div class="modal-box">
+
+<button class="close-modal" onclick="closeApply()">×</button>
+
+<h2>Apply For This Job</h2>
+
+<div class="modal-company">
+JobDagar Application
+</div>
+
+<input id="appName" type="text" placeholder="👤 Full Name"
+style="width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:6px;">
+
+<input id="appPhone" type="tel" placeholder="📱 Mobile Number"
+style="width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:6px;">
+
+<input id="appEmail" type="email" placeholder="📧 Email Address"
+style="width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:6px;">
+
+<input id="appCity" type="text" placeholder="📍 City"
+style="width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:6px;">
+
+<input id="appEducation" type="text" placeholder="🎓 Qualification"
+style="width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:6px;">
+
+<button class="apply-btn"
+style="width:100%;margin-top:12px;"
+onclick="submitApplication()">
+Submit Application
+</button>
+
+</div>
+
+</div>
 </body>
 </html>
