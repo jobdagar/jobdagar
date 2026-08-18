@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>JobDagar | नौकरी के अवसर खोजें</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f8fc;
+color:#172033;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:92%;
+max-width:1150px;
+margin:auto;
+}
+
+/* HEADER */
+
+header{
+background:#ffffff;
+border-bottom:1px solid #e8edf5;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.navbar{
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:24px;
+font-weight:800;
+}
+
+.logo-icon{
+width:42px;
+height:42px;
+border-radius:10px;
+background:#1769e0;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+}
+
+.logo span{
+color:#1769e0;
+}
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.nav-links a{
+font-size:15px;
+font-weight:600;
+}
+
+.nav-links a:hover{
+color:#1769e0;
+}
+
+.post-job{
+background:#1769e0;
+color:white !important;
+padding:11px 18px;
+border-radius:7px;
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(135deg,#0d5bd7,#2586f5);
+color:white;
+padding:75px 0;
+}
+
+.hero-content{
+text-align:center;
+}
+
+.badge{
+display:inline-block;
+background:rgba(255,255,255,.15);
+padding:8px 15px;
+border-radius:30px;
+margin-bottom:18px;
+font-size:14px;
+}
+
+.hero h1{
+font-size:44px;
+line-height:1.2;
+margin-bottom:15px;
+}
+
+.hero h1 span{
+color:#ffd43b;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:30px;
+opacity:.95;
+}
+
+/* SEARCH */
+
+.search-box{
+background:white;
+padding:8px;
+border-radius:10px;
+display:flex;
+max-width:800px;
+margin:auto;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.search-box input{
+flex:1;
+border:0;
+outline:0;
+padding:15px;
+font-size:16px;
+color:#222;
+}
+
+.search-btn{
+background:#1769e0;
+border:0;
+color:white;
+padding:0 25px;
+border-radius:7px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.search-btn:hover{
+background:#0d55b8;
+}
+
+/* STATS */
+
+.stats{
+display:flex;
+justify-content:center;
+gap:55px;
+margin-top:40px;
+}
+
+.stat strong{
+display:block;
+font-size:25px;
+}
+
+.stat span{
+font-size:13px;
+opacity:.9;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.nav-links{
+display:none;
+}
+
+.hero{
+padding:55px 0;
+}
+
+.hero h1{
+font-size:31px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.search-box{
+display:block;
+padding:8px;
+}
+
+.search-box input{
+width:100%;
+}
+
+.search-btn{
+width:100%;
+height:48px;
+margin-top:7px;
+}
+
+.stats{
+gap:20px;
+}
+
+.stat strong{
+font-size:20px;
+}
+
+.stat span{
+font-size:11px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container navbar">
+
+<a href="#" class="logo">
+
+<div class="logo-icon">J</div>
+
+<div>
+Job<span>Dagar</span>
+</div>
+
+</a>
+
+<nav class="nav-links">
+
+<a href="#">Home</a>
+
+<a href="#categories">Categories</a>
+
+<a href="#jobs">Jobs</a>
+
+<a href="#about">About</a>
+
+<a href="#employer" class="post-job">
+Post a Job
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<div class="badge">
+🇮🇳 भारत में नौकरी के अवसर
+</div>
+
+<h1>
+नौकरी का अगला <span>अवसर</span> यहाँ खोजें
+</h1>
+
+<p>
+Private, Government, Work From Home और Freshers Jobs एक ही जगह
+</p>
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Job title, company या keyword खोजें..."
+>
+
+<button
+class="search-btn"
+onclick="searchJobs()"
+>
+🔍 Search Jobs
+</button>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong>500+</strong>
+<span>Job Opportunities</span>
+</div>
+
+<div class="stat">
+<strong>100+</strong>
+<span>Companies</span>
+</div>
+
+<div class="stat">
+<strong>10+</strong>
+<span>Categories</span>
+</div>
+
+<div class="stat">
+<strong>24/7</strong>
+<span>Easy Access</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+<div class="container">
+
+<div class="section-title">
+<h2>नौकरी की Category चुनें</h2>
+<p>अपनी पसंद के अनुसार नौकरी खोजें</p>
+</div>
+
+<div class="categories">
+
+<div class="category-card"
+onclick="filterJobs('private')">
+
+<div class="category-icon">💼</div>
+
+<h3>Private Jobs</h3>
+
+<p>Private companies की नौकरियाँ</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('government')">
+
+<div class="category-icon">🏛️</div>
+
+<h3>Government Jobs</h3>
+
+<p>सरकारी नौकरी की जानकारी</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('remote')">
+
+<div class="category-icon">🏠</div>
+
+<h3>Work From Home</h3>
+
+<p>घर से काम करने वाली नौकरियाँ</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('fresher')">
+
+<div class="category-icon">🎓</div>
+
+<h3>Freshers Jobs</h3>
+
+<p>नए candidates के लिए jobs</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('it')">
+
+<div class="category-icon">💻</div>
+
+<h3>IT Jobs</h3>
+
+<p>Computer और IT से जुड़ी jobs</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('banking')">
+
+<div class="category-icon">🏦</div>
+
+<h3>Banking Jobs</h3>
+
+<p>Banking और finance jobs</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('healthcare')">
+
+<div class="category-icon">🏥</div>
+
+<h3>Healthcare Jobs</h3>
+
+<p>Healthcare sector की jobs</p>
+
+</div>
+
+
+<div class="category-card"
+onclick="filterJobs('teaching')">
+
+<div class="category-icon">👨‍🏫</div>
+
+<h3>Teaching Jobs</h3>
+
+<p>Teacher और education jobs</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LATEST JOBS -->
+
+<section class="section jobs-section" id="jobs">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Latest Job Opportunities</h2>
+
+<p>अभी उपलब्ध नौकरी के अवसर</p>
+
+</div>
+
+
+<div class="job-tools">
+
+<div id="jobResult">
+सभी jobs दिखाई जा रही हैं
+</div>
+
+<button
+class="all-btn"
+onclick="showAllJobs()">
+सभी Jobs
+</button>
+
+</div>
+
+
+<div class="jobs-grid" id="jobsGrid">
+
+
+<!-- JOB 1 -->
+
+<div class="job-card" data-category="private">
+
+<div class="job-top">
+
+<span class="job-tag">
+PRIVATE
+</span>
+
+<span class="job-date">
+आज
+</span>
+
+</div>
+
+<h3>Sales Executive</h3>
+
+<p class="company">
+🏢 Private Company
+</p>
+
+<div class="job-info">
+📍 Jaipur, Rajasthan
+</div>
+
+<div class="job-info">
+💰 ₹18,000 - ₹25,000 / Month
+</div>
+
+<div class="job-info">
+🎓 12th / Graduate
+</div>
+
+<div class="job-info">
+💼 Full Time
+</div>
+
+<div class="job-actions">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Sales Executive',
+'Private Company',
+'Jaipur, Rajasthan',
+'₹18,000 - ₹25,000 / Month',
+'12th / Graduate',
+'Freshers can apply. Good communication skills preferred.'
+)">
+View Details
+</button>
+
+<button
+class="apply-btn"
+onclick="applyJob()">
+Apply Now
+</button>
+
+</div>
+
+</div>
+
+
+<!-- JOB 2 -->
+
+<div class="job-card" data-category="government">
+
+<div class="job-top">
+
+<span class="job-tag government-tag">
+GOVERNMENT
+</span>
+
+<span class="job-date">
+New
+</span>
+
+</div>
+
+<h3>Junior Assistant</h3>
+
+<p class="company">
+🏛️ Government Department
+</p>
+
+<div class="job-info">
+📍 Rajasthan
+</div>
+
+<div class="job-info">
+💰 Government Pay Scale
+</div>
+
+<div class="job-info">
+🎓 Graduate
+</div>
+
+<div class="job-info">
+💼 Full Time
+</div>
+
+<div class="job-actions">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Junior Assistant',
+'Government Department',
+'Rajasthan',
+'Government Pay Scale',
+'Graduate',
+'Office work, documentation and administrative duties.'
+)">
+View Details
+</button>
+
+<button
+class="apply-btn"
+onclick="applyJob()">
+Apply Now
+</button>
+
+</div>
+
+</div>
+
+
+<!-- JOB 3 -->
+
+<div class="job-card" data-category="remote">
+
+<div class="job-top">
+
+<span class="job-tag">
+REMOTE
+</span>
+
+<span class="job-date">
+Today
+</span>
+
+</div>
+
+<h3>Customer Support</h3>
+
+<p class="company">
+🏢 Remote Company
+</p>
+
+<div class="job-info">
+📍 Work From Home
+</div>
+
+<div class="job-info">
+💰 ₹15,000 - ₹22,000 / Month
+</div>
+
+<div class="job-info">
+🎓 12th Pass
+</div>
+
+<div class="job-info">
+💼 Full Time
+</div>
+
+<div class="job-actions">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Customer Support',
+'Remote Company',
+'Work From Home',
+'₹15,000 - ₹22,000 / Month',
+'12th Pass',
+'Customer support through phone, chat and email.'
+)">
+View Details
+</button>
+
+<button
+class="apply-btn"
+onclick="applyJob()">
+Apply Now
+</button>
+
+</div>
+
+</div>
+
+
+<!-- JOB 4 -->
+
+<div class="job-card" data-category="fresher">
+
+<div class="job-top">
+
+<span class="job-tag">
+FRESHER
+</span>
+
+<span class="job-date">
+New
+</span>
+
+</div>
+
+<h3>Junior Sales Associate</h3>
+
+<p class="company">
+🏢 Growing Company
+</p>
+
+<div class="job-info">
+📍 Gurugram
+</div>
+
+<div class="job-info">
+💰 ₹20,000 - ₹28,000 / Month
+</div>
+
+<div class="job-info">
+🎓 Graduate / Fresher
+</div>
+
+<div class="job-info">
+💼 Full Time
+</div>
+
+<div class="job-actions">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Junior Sales Associate',
+'Growing Company',
+'Gurugram',
+'₹20,000 - ₹28,000 / Month',
+'Graduate / Fresher',
+'Fresh graduates can apply for this position.'
+)">
+View Details
+</button>
+
+<button
+class="apply-btn"
+onclick="applyJob()">
+Apply Now
+</button>
+
+</div>
+
+</div>
+
+
+<!-- JOB 5 -->
+
+<div class="job-card" data-category="it">
+
+<div class="job-top">
+
+<span class="job-tag">
+IT
+</span>
+
+<span class="job-date">
+New
+</span>
+
+</div>
+
+<h3>Web Developer</h3>
+
+<p class="company">
+🏢 Technology Company
+</p>
+
+<div class="job-info">
+📍 Jaipur / Remote
+</div>
+
+<div class="job-info">
+💰 ₹25,000 - ₹40,000 / Month
+</div>
+
+<div class="job-info">
+🎓 Graduate / IT Skills
+</div>
+
+<div class="job-info">
+💼 Full Time
+</div>
+
+<div class="job-actions">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Web Developer',
+'Technology Company',
+'Jaipur / Remote',
+'₹25,000 - ₹40,000 / Month',
+'Graduate / IT Skills',
+'HTML, CSS and JavaScript knowledge preferred.'
+)">
+View Details
+</button>
+
+<button
+class="apply-btn"
+onclick="applyJob()">
+Apply Now
+</button>
+
+</div>
+
+</div>
+
+
+<!-- JOB 6 -->
+
+<div class="job-card" data-category="banking">
+
+<div class="job-top">
+
+<span class="job-tag">
+BANKING
+</span>
+
+<span class="job-date">
+New
+</span>
+
+</div>
+
+<h3>Banking Executive</h3>
+
+<p class="company">
+🏢 Financial Services
+</p>
+
+<div class="job-info">
+📍 Delhi NCR
+</div>
+
+<div class="job-info">
+💰 ₹22,000 - ₹32,000 / Month
+</div>
+
+<div class="job-info">
+🎓 Graduate
+</div>
+
+<div class="job-info">
+💼 Full Time
+</div>
+
+<div class="job-actions">
+
+<button
+class="details-btn"
+onclick="showDetails(
+'Banking Executive',
+'Financial Services',
+'Delhi NCR',
+'₹22,000 - ₹32,000 / Month',
+'Graduate',
+'Customer handling and banking service support.'
+)">
+View Details
+</button>
+
+<button
+class="apply-btn"
+onclick="applyJob()">
+Apply Now
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+id="noJobs"
+class="no-jobs">
+
+इस category में अभी कोई job उपलब्ध नहीं है।
+
+</div>
+
+</div>
+
+</section>
+
+
+<style>
+
+.section{
+padding:70px 0;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:35px;
+}
+
+.section-title h2{
+font-size:32px;
+margin-bottom:8px;
+}
+
+.section-title p{
+color:#687386;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.category-card{
+background:white;
+padding:25px 18px;
+border:1px solid #e6ebf2;
+border-radius:12px;
+text-align:center;
+cursor:pointer;
+transition:.25s;
+}
+
+.category-card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(20,70,130,.1);
+border-color:#1769e0;
+}
+
+.category-icon{
+font-size:34px;
+margin-bottom:12px;
+}
+
+.category-card h3{
+margin-bottom:8px;
+font-size:18px;
+}
+
+.category-card p{
+font-size:13px;
+color:#707b8d;
+}
+
+
+.job-tools{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+font-size:14px;
+color:#647084;
+}
+
+.all-btn{
+background:#eaf2ff;
+border:0;
+padding:10px 18px;
+border-radius:7px;
+color:#1769e0;
+font-weight:bold;
+cursor:pointer;
+}
+
+.jobs-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.job-card{
+background:white;
+border:1px solid #e5eaf1;
+border-radius:12px;
+padding:22px;
+transition:.25s;
+}
+
+.job-card:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(20,50,100,.09);
+}
+
+.job-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:14px;
+}
+
+.job-tag{
+background:#e9f2ff;
+color:#1769e0;
+font-size:11px;
+font-weight:bold;
+padding:6px 9px;
+border-radius:5px;
+}
+
+.government-tag{
+background:#fff3dc;
+color:#b36a00;
+}
+
+.job-date{
+font-size:11px;
+color:#7d8796;
+}
+
+.job-card h3{
+font-size:20px;
+margin-bottom:8px;
+}
+
+.company{
+font-size:14px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.job-info{
+font-size:13px;
+color:#667285;
+margin:8px 0;
+}
+
+.job-actions{
+display:flex;
+gap:8px;
+margin-top:18px;
+}
+
+.details-btn,
+.apply-btn{
+flex:1;
+padding:11px 8px;
+border-radius:7px;
+font-weight:bold;
+cursor:pointer;
+border:0;
+}
+
+.details-btn{
+background:#eef3f9;
+color:#26354a;
+}
+
+.apply-btn{
+background:#1769e0;
+color:white;
+}
+
+.apply-btn:hover{
+background:#0d55b8;
+}
+
+.no-jobs{
+display:none;
+text-align:center;
+padding:30px;
+color:#687386;
+}
+
+@media(max-width:900px){
+
+.categories{
+grid-template-columns:repeat(2,1fr);
+}
+
+.jobs-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.section{
+padding:50px 0;
+}
+
+.section-title h2{
+font-size:26px;
+}
+
+.jobs-grid{
+grid-template-columns:1fr;
+}
+
+}
+</style>
+<!-- JOB DETAILS MODAL -->
+
+<div class="modal" id="jobModal">
+
+<div class="modal-box">
+
+<button class="close-modal"
+onclick="closeModal()">×</button>
+
+<h2 id="modalTitle">Job Title</h2>
+
+<div class="modal-company"
+id="modalCompany">
+Company
+</div>
+
+<div class="modal-line"
+id="modalLocation">
+📍 Location
+</div>
+
+<div class="modal-line"
+id="modalSalary">
+💰 Salary
+</div>
+
+<div class="modal-line"
+id="modalEducation">
+🎓 Qualification
+</div>
+
+<div class="modal-description">
+
+<h3>Job Description</h3>
+
+<p id="modalDescription">
+Job details यहाँ दिखाई देंगी।
+</p>
+
+</div>
+
+<button
+class="apply-btn modal-apply"
+onclick="applyJob()">
+
+Apply Now
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section class="section about-section" id="about">
+
+<div class="container about-box">
+
+<div class="about-text">
+
+<div class="small-title">
+ABOUT JOBDAGAR
+</div>
+
+<h2>
+नौकरी खोजने का आसान तरीका
+</h2>
+
+<p>
+JobDagar का उद्देश्य job seekers को अलग-अलग
+नौकरी के अवसर एक ही जगह आसानी से खोजने में मदद करना है।
+</p>
+
+<p>
+Private Jobs, Government Jobs, Work From Home,
+Freshers और अलग-अलग career categories को
+एक आसान platform पर लाने की कोशिश है।
+</p>
+
+</div>
+
+
+<div class="about-points">
+
+<div>
+<span>✓</span>
+Easy Job Search
+</div>
+
+<div>
+<span>✓</span>
+Multiple Job Categories
+</div>
+
+<div>
+<span>✓</span>
+Mobile Friendly
+</div>
+
+<div>
+<span>✓</span>
+Simple Application Process
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EMPLOYER -->
+
+<section class="employer-section"
+id="employer">
+
+<div class="container employer-box">
+
+<div>
+
+<div class="small-title">
+FOR EMPLOYERS
+</div>
+
+<h2>
+क्या आप अपनी Job Post करना चाहते हैं?
+</h2>
+
+<p>
+Companies और employers जल्द JobDagar पर
+अपनी vacancies post कर सकेंगे।
+</p>
+
+</div>
+
+<button
+class="employer-btn"
+onclick="employerMessage()">
+
+Post a Job
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Contact JobDagar
+</h2>
+
+<p>
+हमसे संपर्क करने के लिए नीचे जानकारी दें
+</p>
+
+</div>
+
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📧
+</div>
+
+<h3>Email</h3>
+
+<p>
+support@jobdagar.in
+</p>
+
+</div>
+
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📱
+</div>
+
+<h3>Mobile</h3>
+
+<p>
++91 XXXXX XXXXX
+</p>
+
+</div>
+
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📍
+</div>
+
+<h3>Location</h3>
+
+<p>
+India
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer-grid">
+
+<div class="footer-brand">
+
+<div class="footer-logo">
+
+<div class="footer-logo-icon">
+J
+</div>
+
+Job<span>Dagar</span>
+
+</div>
+
+<p>
+भारत में नौकरी के अवसर खोजने का
+आसान और सरल platform।
+</p>
+
+</div>
+
+
+<div class="footer-column">
+
+<h3>
+Quick Links
+</h3>
+
+<a href="#">
+Home
+</a>
+
+<a href="#categories">
+Categories
+</a>
+
+<a href="#jobs">
+Latest Jobs
+</a>
+
+<a href="#about">
+About
+</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<h3>
+Job Categories
+</h3>
+
+<a href="#jobs"
+onclick="filterJobs('private')">
+Private Jobs
+</a>
+
+<a href="#jobs"
+onclick="filterJobs('government')">
+Government Jobs
+</a>
+
+<a href="#jobs"
+onclick="filterJobs('remote')">
+Work From Home
+</a>
+
+<a href="#jobs"
+onclick="filterJobs('fresher')">
+Freshers Jobs
+</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<h3>
+Follow Us
+</h3>
+
+<a href="#">
+Facebook
+</a>
+
+<a href="#">
+Instagram
+</a>
+
+<a href="#">
+YouTube
+</a>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+
+©️ 2026 JobDagar. All Rights Reserved.
+
+</div>
+
+</footer>
+
+
+<!-- APPLY MODAL -->
+
+<div class="modal" id="applyModal">
+
+<div class="modal-box">
+
+<button
+class="close-modal"
+onclick="closeApply()">
+
+×
+
+</button>
+
+<h2>
+Apply For This Job
+</h2>
+
+<div class="modal-company">
+JobDagar Application
+</div>
+
+
+<input
+class="form-input"
+id="appName"
+type="text"
+placeholder="👤 Full Name"
+>
+
+
+<input
+class="form-input"
+id="appPhone"
+type="tel"
+placeholder="📱 Mobile Number"
+>
+
+
+<input
+class="form-input"
+id="appEmail"
+type="email"
+placeholder="📧 Email Address"
+>
+
+
+<input
+class="form-input"
+id="appCity"
+type="text"
+placeholder="📍 City"
+>
+
+
+<input
+class="form-input"
+id="appEducation"
+type="text"
+placeholder="🎓 Qualification"
+>
+
+
+<input
+class="form-input"
+id="appExperience"
+type="text"
+placeholder="💼 Experience (e.g. Fresher)"
+>
+
+
+<label class="resume-label">
+
+📄 Upload Resume
+
+<input
+type="file"
+id="appResume"
+accept=".pdf,.doc,.docx"
+>
+
+</label>
+
+
+<button
+class="apply-btn submit-btn"
+onclick="submitApplication()">
+
+Submit Application
+
+</button>
+
+</div>
+
+</div>
+
+
+<style>
+
+/* MODALS */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(10,20,40,.65);
+z-index:500;
+align-items:center;
+justify-content:center;
+padding:15px;
+}
+
+.modal-box{
+background:white;
+width:100%;
+max-width:520px;
+max-height:90vh;
+overflow-y:auto;
+border-radius:14px;
+padding:28px;
+position:relative;
+box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.close-modal{
+position:absolute;
+right:15px;
+top:12px;
+width:34px;
+height:34px;
+border:0;
+border-radius:50%;
+background:#f0f3f7;
+font-size:24px;
+cursor:pointer;
+}
+
+.modal-box h2{
+font-size:25px;
+margin-bottom:8px;
+padding-right:35px;
+}
+
+.modal-company{
+font-weight:bold;
+color:#1769e0;
+margin-bottom:20px;
+}
+
+.modal-line{
+padding:10px 0;
+border-bottom:1px solid #edf0f4;
+font-size:14px;
+color:#59677b;
+}
+
+.modal-description{
+margin-top:20px;
+}
+
+.modal-description h3{
+margin-bottom:8px;
+}
+
+.modal-description p{
+color:#657287;
+line-height:1.6;
+font-size:14px;
+}
+
+.modal-apply{
+width:100%;
+margin-top:22px;
+}
+
+.form-input{
+width:100%;
+padding:13px;
+margin:6px 0;
+border:1px solid #dce2ea;
+border-radius:7px;
+outline:none;
+font-size:14px;
+}
+
+.form-input:focus{
+border-color:#1769e0;
+}
+
+.resume-label{
+display:block;
+border:1px dashed #b9c5d5;
+padding:14px;
+margin:8px 0;
+border-radius:7px;
+font-size:14px;
+color:#536176;
+}
+
+.resume-label input{
+display:block;
+margin-top:8px;
+width:100%;
+}
+
+.submit-btn{
+width:100%;
+margin-top:10px;
+}
+
+.about-box{
+background:white;
+border-radius:15px;
+padding:40px;
+display:grid;
+grid-template-columns:1.3fr 1fr;
+gap:45px;
+border:1px solid #e6ebf2;
+}
+
+.small-title{
+color:#1769e0;
+font-size:12px;
+font-weight:bold;
+letter-spacing:1px;
+margin-bottom:10px;
+}
+
+.about-text h2{
+font-size:30px;
+margin-bottom:15px;
+}
+
+.about-text p{
+color:#667285;
+line-height:1.7;
+margin:10px 0;
+}
+
+.about-points{
+display:flex;
+flex-direction:column;
+justify-content:center;
+gap:18px;
+}
+
+.about-points div{
+font-weight:bold;
+}
+
+.about-points span{
+color:#1769e0;
+font-size:20px;
+margin-right:8px;
+}
+
+.employer-section{
+padding:65px 0;
+background:#eaf3ff;
+}
+
+.employer-box{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:25px;
+}
+
+.employer-box h2{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.employer-box p{
+color:#647084;
+}
+
+.employer-btn{
+border:0;
+background:#1769e0;
+color:white;
+padding:14px 25px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.contact-card{
+background:white;
+border:1px solid #e5eaf1;
+border-radius:12px;
+padding:28px;
+text-align:center;
+}
+
+.contact-icon{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.contact-card p{
+color:#687386;
+margin-top:8px;
+}
+
+footer{
+background:#111b2d;
+color:white;
+padding:55px 0 0;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:35px;
+padding-bottom:40px;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:9px;
+font-size:24px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.footer-logo span{
+color:#5fa0ff;
+}
+
+.footer-logo-icon{
+width:38px;
+height:38px;
+background:#1769e0;
+border-radius:9px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.footer-brand p{
+color:#aeb8c8;
+font-size:14px;
+line-height:1.6;
+max-width:300px;
+}
+
+.footer-column{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.footer-column h3{
+font-size:15px;
+margin-bottom:5px;
+}
+
+.footer-column a{
+color:#aeb8c8;
+font-size:13px;
+}
+
+.footer-column a:hover{
+color:white;
+}
+
+.copyright{
+border-top:1px solid #273248;
+padding:20px 0;
+text-align:center;
+color:#8995a8;
+font-size:12px;
+}
+
+@media(max-width:700px){
+
+.about-box{
+grid-template-columns:1fr;
+padding:25px;
+}
+
+.employer-box{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.modal-box{
+padding:22px;
+}
+
+}
+
+@media(max-width:450px){
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+<script>
+
+/* SEARCH */
+
+function searchJobs(){
+
+    let input =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+    let jobs =
+    document.querySelectorAll(".job-card");
+
+    let count = 0;
+
+    jobs.forEach(function(job){
+
+        let text =
+        job.innerText.toLowerCase();
+
+        if(input === "" || text.includes(input)){
+
+            job.style.display = "";
+
+            count++;
+
+        }else{
+
+            job.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("jobResult").innerText =
+    input === ""
+    ? "सभी jobs दिखाई जा रही हैं"
+    : count + " jobs मिलीं";
+
+    document.getElementById("noJobs").style.display =
+    count === 0 ? "block" : "none";
+
+    document.getElementById("jobs").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterJobs(category){
+
+    let jobs =
+    document.querySelectorAll(".job-card");
+
+    let count = 0;
+
+    jobs.forEach(function(job){
+
+        if(job.dataset.category === category){
+
+            job.style.display = "";
+
+            count++;
+
+        }else{
+
+            job.style.display = "none";
+
+        }
+
+    });
+
+    let names = {
+
+        private:"Private Jobs",
+
+        government:"Government Jobs",
+
+        remote:"Work From Home Jobs",
+
+        fresher:"Freshers Jobs",
+
+        it:"IT Jobs",
+
+        banking:"Banking Jobs",
+
+        healthcare:"Healthcare Jobs",
+
+        teaching:"Teaching Jobs"
+
+    };
+
+    document.getElementById("jobResult").innerText =
+    count + " " + names[category] + " दिखाई जा रही हैं";
+
+    document.getElementById("noJobs").style.display =
+    count === 0 ? "block" : "none";
+
+    document.getElementById("jobs").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* SHOW ALL */
+
+function showAllJobs(){
+
+    let jobs =
+    document.querySelectorAll(".job-card");
+
+    jobs.forEach(function(job){
+
+        job.style.display = "";
+
+    });
+
+    document.getElementById("jobResult").innerText =
+    "सभी jobs दिखाई जा रही हैं";
+
+    document.getElementById("noJobs").style.display =
+    "none";
+
+}
+
+
+/* JOB DETAILS */
+
+function showDetails(
+    title,
+    company,
+    location,
+    salary,
+    education,
+    description
+){
+
+    document.getElementById("modalTitle")
+    .innerText = title;
+
+    document.getElementById("modalCompany")
+    .innerText = "🏢 " + company;
+
+    document.getElementById("modalLocation")
+    .innerText = "📍 " + location;
+
+    document.getElementById("modalSalary")
+    .innerText = "💰 " + salary;
+
+    document.getElementById("modalEducation")
+    .innerText = "🎓 " + education;
+
+    document.getElementById("modalDescription")
+    .innerText = description;
+
+    document.getElementById("jobModal")
+    .style.display = "flex";
+
+}
+
+
+/* CLOSE DETAILS */
+
+function closeModal(){
+
+    document.getElementById("jobModal")
+    .style.display = "none";
+
+}
+
+
+/* APPLY */
+
+function applyJob(){
+
+    document.getElementById("applyModal")
+    .style.display = "flex";
+
+}
+
+
+/* CLOSE APPLY */
+
+function closeApply(){
+
+    document.getElementById("applyModal")
+    .style.display = "none";
+
+}
+
+
+/* SUBMIT APPLICATION */
+
+function submitApplication(){
+
+    let name =
+    document.getElementById("appName")
+    .value.trim();
+
+    let phone =
+    document.getElementById("appPhone")
+    .value.trim();
+
+    let email =
+    document.getElementById("appEmail")
+    .value.trim();
+
+    let city =
+    document.getElementById("appCity")
+    .value.trim();
+
+    let education =
+    document.getElementById("appEducation")
+    .value.trim();
+
+
+    if(
+        name === "" ||
+        phone === "" ||
+        email === "" ||
+        city === "" ||
+        education === ""
+    ){
+
+        alert("कृपया सभी जानकारी भरें।");
+
+        return;
+
+    }
+
+
+    if(phone.length < 10){
+
+        alert("कृपया सही Mobile Number डालें।");
+
+        return;
+
+    }
+
+
+    alert(
+        "Application successfully submitted!\n\nधन्यवाद " +
+        name +
+        " जी।"
+    );
+
+
+    document.getElementById("appName").value = "";
+    document.getElementById("appPhone").value = "";
+    document.getElementById("appEmail").value = "";
+    document.getElementById("appCity").value = "";
+    document.getElementById("appEducation").value = "";
+    document.getElementById("appExperience").value = "";
+    document.getElementById("appResume").value = "";
+
+    closeApply();
+
+}
+
+
+/* EMPLOYER */
+
+function employerMessage(){
+
+    alert(
+        "Employer Job Posting System जल्द उपलब्ध होगा।"
+    );
+
+}
+
+
+/* CLOSE MODALS BY OUTSIDE CLICK */
+
+window.addEventListener("click",function(event){
+
+    let jobModal =
+    document.getElementById("jobModal");
+
+    let applyModal =
+    document.getElementById("applyModal");
+
+
+    if(event.target === jobModal){
+
+        closeModal();
+
+    }
+
+
+    if(event.target === applyModal){
+
+        closeApply();
+
+    }
+
+});
+
+
+/* ENTER KEY SEARCH */
+
+document.getElementById("searchInput")
+.addEventListener("keypress",function(event){
+
+    if(event.key === "Enter"){
+
+        searchJobs();
+
+    }
+
+});
+
+
+</script>
+
+
+</body>
+</html>
