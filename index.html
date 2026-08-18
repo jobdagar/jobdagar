@@ -1916,5 +1916,89 @@ window.addEventListener("load", function(){
 
 });
 </script>
+<script>
+
+let selectedJobId = null;
+
+function applyJob(jobId){
+
+    selectedJobId = jobId || null;
+
+    document.getElementById("applyModal").style.display = "flex";
+}
+
+function closeApply(){
+
+    document.getElementById("applyModal").style.display = "none";
+}
+
+async function submitApplication(){
+
+    const name =
+        document.getElementById("appName").value.trim();
+
+    const phone =
+        document.getElementById("appPhone").value.trim();
+
+    const email =
+        document.getElementById("appEmail").value.trim();
+
+    const city =
+        document.getElementById("appCity").value.trim();
+
+    const education =
+        document.getElementById("appEducation").value.trim();
+
+    const experience =
+        document.getElementById("appExperience").value.trim();
+
+    if(!name || !phone || !email){
+
+        alert("Name, Mobile और Email भरना जरूरी है।");
+        return;
+    }
+
+    if(!selectedJobId){
+
+        alert("Job select नहीं हुई।");
+        return;
+    }
+
+    const { error } =
+        await supabaseClient
+        .from("applications")
+        .insert({
+
+            job_id: selectedJobId,
+            name: name,
+            phone: phone,
+            email: email,
+            city: city,
+            education: education,
+            experience: experience
+
+        });
+
+    if(error){
+
+        alert("Application submit नहीं हुई: " + error.message);
+        console.error(error);
+        return;
+    }
+
+    alert("✅ आपकी Application successfully submit हो गई!");
+
+    closeApply();
+
+    document.getElementById("appName").value = "";
+    document.getElementById("appPhone").value = "";
+    document.getElementById("appEmail").value = "";
+    document.getElementById("appCity").value = "";
+    document.getElementById("appEducation").value = "";
+    document.getElementById("appExperience").value = "";
+
+}
+
+</script>
 </body>
 </html>
