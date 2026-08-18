@@ -2290,8 +2290,14 @@ loadDatabaseJobs();
 
 </script>
 <script>
-document.querySelectorAll('#jobsGrid > .job-card').forEach(function(job){
-    job.style.display = 'none';
+window.addEventListener("load", function(){
+
+    document.querySelectorAll("#jobsGrid > .job-card").forEach(function(job){
+
+        job.style.display = "none";
+
+    });
+
 });
 </script>
 </body>
