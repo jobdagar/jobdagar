@@ -1925,6 +1925,10 @@ function applyJob(jobId){
     selectedJobId = jobId || null;
 
     document.getElementById("applyModal").style.display = "flex";
+}if(!selectedJobId){
+
+    alert("Job select नहीं हुई।");
+    return;
 }
 
 function closeApply(){
