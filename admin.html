@@ -200,7 +200,7 @@ grid-template-columns:repeat(2,1fr);
 
 <div class="buttons">
 
-<button>
+<button onclick="showAddJob()">
 ➕ Add Job
 </button>
 
@@ -409,6 +409,108 @@ async function adminLogin(){
 }
 
 </script>
+<div id="jobForm" style="
+display:none;
+background:white;
+padding:25px;
+margin:25px auto;
+max-width:600px;
+border-radius:12px;
+border:1px solid #e4e9f0;
+">
 
+<h2>➕ Add New Job</h2>
+
+<input id="jobTitle" placeholder="Job Title"
+style="width:100%;padding:12px;margin:6px 0;">
+
+<input id="jobCompany" placeholder="Company Name"
+style="width:100%;padding:12px;margin:6px 0;">
+
+<input id="jobLocation" placeholder="Location"
+style="width:100%;padding:12px;margin:6px 0;">
+
+<input id="jobSalary" placeholder="Salary"
+style="width:100%;padding:12px;margin:6px 0;">
+
+<input id="jobCategory" placeholder="Category"
+style="width:100%;padding:12px;margin:6px 0;">
+
+<input id="jobQualification" placeholder="Qualification"
+style="width:100%;padding:12px;margin:6px 0;">
+
+<textarea id="jobDescription"
+placeholder="Job Description"
+style="width:100%;padding:12px;margin:6px 0;height:120px;">
+</textarea>
+
+<button onclick="saveJob()">
+💾 Save Job
+</button>
+
+<button onclick="hideAddJob()" style="background:#777;">
+Cancel
+</button>
+
+<p id="jobMessage"></p>
+
+</div>
+<script>
+
+function showAddJob(){
+    document.getElementById("jobForm").style.display = "block";
+}
+
+function hideAddJob(){
+    document.getElementById("jobForm").style.display = "none";
+}
+
+async function saveJob(){
+
+    const title = document.getElementById("jobTitle").value.trim();
+    const company = document.getElementById("jobCompany").value.trim();
+    const location = document.getElementById("jobLocation").value.trim();
+    const salary = document.getElementById("jobSalary").value.trim();
+    const category = document.getElementById("jobCategory").value.trim();
+    const qualification = document.getElementById("jobQualification").value.trim();
+    const description = document.getElementById("jobDescription").value.trim();
+
+    const message = document.getElementById("jobMessage");
+
+    if(!title || !company){
+        message.innerText = "Job Title और Company Name भरें।";
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from("jobs")
+        .insert({
+            title,
+            company,
+            location,
+            salary,
+            category,
+            qualification,
+            description
+        });
+
+    if(error){
+        message.innerText = "Job save नहीं हुई: " + error.message;
+        return;
+    }
+
+    message.style.color = "green";
+    message.innerText = "✅ Job successfully added!";
+
+    document.getElementById("jobTitle").value = "";
+    document.getElementById("jobCompany").value = "";
+    document.getElementById("jobLocation").value = "";
+    document.getElementById("jobSalary").value = "";
+    document.getElementById("jobCategory").value = "";
+    document.getElementById("jobQualification").value = "";
+    document.getElementById("jobDescription").value = "";
+}
+
+</script>
 </body>
 </html>
