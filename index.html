@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>JobDagar | नौकरी खोजें</title>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://ojloflsbvvucyumlgtus.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_VlsXGIvfOJFlaN5pnjVVlA_p22cMCGJ";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+
+</script>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f8fc;
+    color:#172033;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#ffffff;
+    padding:15px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#1769e0;
+}
+
+.logo span{
+    color:#172033;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#172033;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#1769e0;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:linear-gradient(
+        135deg,
+        #1769e0,
+        #4f8df7
+    );
+
+    color:white;
+    text-align:center;
+    padding:70px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:28px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    max-width:850px;
+    margin:auto;
+    display:flex;
+    gap:10px;
+}
+
+.search-box input{
+    flex:1;
+    padding:16px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box button{
+    padding:16px 28px;
+    border:none;
+    border-radius:8px;
+    background:#172033;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    opacity:.9;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    max-width:1150px;
+    margin:45px auto;
+    padding:0 20px;
+}
+
+.section-title{
+    font-size:28px;
+    margin-bottom:22px;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories{
+    display:grid;
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.category{
+    background:white;
+    padding:22px 15px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.08);
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-3px);
+}
+
+.category-icon{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.category-name{
+    font-weight:bold;
+}
+
+
+/* =========================
+   JOBS
+========================= */
+
+.jobs-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#687386;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:60px;
+    background:#172033;
+    color:white;
+    text-align:center;
+    padding:28px 20px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .categories{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .jobs-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:13px 16px;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+        font-size:13px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .hero{
+        padding:55px 15px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        Job<span>Dagar</span>
+    </div>
+
+    <nav>
+
+        <a href="#jobs">
+            Jobs
+        </a>
+
+        <a href="#categories">
+            Categories
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1>
+        अपनी पसंद की नौकरी खोजें
+    </h1>
+
+    <p>
+        Private, Government, Freshers और Work From Home Jobs
+    </p>
+
+    <div class="search-box">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Job title, company या keyword"
+        >
+
+        <button
+            onclick="searchJobs()"
+        >
+            Search
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section
+    class="section"
+    id="categories"
+>
+
+    <h2 class="section-title">
+        Job Categories
+    </h2>
+
+    <div class="categories">
+
+        <div class="category"
+             onclick="filterCategory('Private')">
+
+            <div class="category-icon">
+                💼
+            </div>
+
+            <div class="category-name">
+                Private Jobs
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Government')">
+
+            <div class="category-icon">
+                🏛️
+            </div>
+
+            <div class="category-name">
+                Government Jobs
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Work From Home')">
+
+            <div class="category-icon">
+                🏠
+            </div>
+
+            <div class="category-name">
+                Work From Home
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Freshers')">
+
+            <div class="category-icon">
+                🎓
+            </div>
+
+            <div class="category-name">
+                Freshers Jobs
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('IT')">
+
+            <div class="category-icon">
+                💻
+            </div>
+
+            <div class="category-name">
+                IT Jobs
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Banking')">
+
+            <div class="category-icon">
+                🏦
+            </div>
+
+            <div class="category-name">
+                Banking Jobs
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Healthcare')">
+
+            <div class="category-icon">
+                🏥
+            </div>
+
+            <div class="category-name">
+                Healthcare Jobs
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Teaching')">
+
+            <div class="category-icon">
+                👨‍🏫
+            </div>
+
+            <div class="category-name">
+                Teaching Jobs
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     JOBS SECTION
+========================= -->
+
+<section
+    class="section"
+    id="jobs"
+>
+
+    <h2 class="section-title">
+        Latest Jobs
+    </h2>
+
+    <div
+        class="jobs-grid"
+        id="jobsGrid"
+    >
+
+        <div class="loading">
+            Jobs loading...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        ©️ 2026 JobDagar. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     BASIC JAVASCRIPT
+========================= -->
+
+<script>
+
+let allJobs = [];
+
+
+/* SEARCH */
+
+function searchJobs(){
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const cards =
+        document
+        .querySelectorAll(".job-card");
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText
+            .toLowerCase();
+
+        card.style.display =
+            text.includes(search)
+            ? ""
+            : "none";
+
+    });
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterCategory(category){
+
+    const cards =
+        document
+        .querySelectorAll(".job-card");
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText
+            .toLowerCase();
+
+        card.style.display =
+            text.includes(
+                category.toLowerCase()
+            )
+            ? ""
+            : "none";
+
+    });
+
+    document
+        .getElementById("jobs")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+</script>
+<!-- =========================
+     JOB CARD + MODALS
+========================= -->
+
+<style>
+
+.job-card{
+    background:#fff;
+    padding:22px;
+    border-radius:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.job-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.job-tag{
+    background:#eaf2ff;
+    color:#1769e0;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.job-date{
+    color:#687386;
+    font-size:12px;
+}
+
+.job-card h3{
+    font-size:20px;
+    margin:10px 0;
+}
+
+.company{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.job-info{
+    color:#687386;
+    margin:7px 0;
+    font-size:14px;
+}
+
+.job-actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.job-actions button{
+    flex:1;
+    border:none;
+    padding:11px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.details-btn{
+    background:#eef3fb;
+    color:#172033;
+}
+
+.apply-btn{
+    background:#1769e0;
+    color:white;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(10,20,40,.65);
+    z-index:5000;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal-box{
+    background:#fff;
+    width:100%;
+    max-width:520px;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:14px;
+    padding:25px;
+    position:relative;
+}
+
+.close-btn{
+    position:absolute;
+    right:15px;
+    top:12px;
+    border:none;
+    background:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.modal-title{
+    font-size:24px;
+    margin-bottom:15px;
+    padding-right:30px;
+}
+
+.form-input{
+    width:100%;
+    padding:13px;
+    margin:7px 0;
+    border:1px solid #d9e0ea;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-input:focus{
+    border-color:#1769e0;
+}
+
+.form-label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.submit-btn{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#1769e0;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.details-content{
+    line-height:1.7;
+    color:#4d596b;
+}
+
+.resume-label{
+    display:block;
+    margin-top:12px;
+    padding:12px;
+    background:#f5f8fc;
+    border:1px dashed #b9c4d4;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.resume-label input{
+    display:block;
+    margin-top:8px;
+}
+
+@media(max-width:500px){
+
+    .job-actions{
+        flex-direction:column;
+    }
+
+    .modal-box{
+        padding:20px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================
+     JOB DETAILS MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="detailsModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close-btn"
+            onclick="closeDetails()"
+        >
+            ×
+        </button>
+
+        <h2
+            class="modal-title"
+            id="detailsTitle"
+        ></h2>
+
+        <div
+            class="details-content"
+            id="detailsContent"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APPLY MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="applyModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close-btn"
+            onclick="closeApply()"
+        >
+            ×
+        </button>
+
+        <h2 class="modal-title">
+            Apply For Job
+        </h2>
+
+        <p
+            id="applyJobName"
+            style="margin-bottom:15px;color:#687386;"
+        ></p>
+
+
+        <label class="form-label">
+            Full Name *
+        </label>
+
+        <input
+            class="form-input"
+            id="appName"
+            type="text"
+            placeholder="👤 Full Name"
+        >
+
+
+        <label class="form-label">
+            Mobile Number *
+        </label>
+
+        <input
+            class="form-input"
+            id="appPhone"
+            type="tel"
+            placeholder="📱 Mobile Number"
+        >
+
+
+        <label class="form-label">
+            Email *
+        </label>
+
+        <input
+            class="form-input"
+            id="appEmail"
+            type="email"
+            placeholder="📧 Email Address"
+        >
+
+
+        <label class="form-label">
+            City
+        </label>
+
+        <input
+            class="form-input"
+            id="appCity"
+            type="text"
+            placeholder="📍 City"
+        >
+
+
+        <label class="form-label">
+            Qualification
+        </label>
+
+        <input
+            class="form-input"
+            id="appEducation"
+            type="text"
+            placeholder="🎓 Qualification"
+        >
+
+
+        <label class="form-label">
+            Experience
+        </label>
+
+        <input
+            class="form-input"
+            id="appExperience"
+            type="text"
+            placeholder="💼 Experience (e.g. Fresher)"
+        >
+
+
+        <label class="resume-label">
+
+            📄 Upload Resume
+
+            <input
+                type="file"
+                id="appResume"
+                accept=".pdf,.doc,.docx"
+            >
+
+        </label>
+
+
+        <button
+            class="submit-btn"
+            onclick="submitApplication()"
+        >
+            Submit Application
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SELECTED JOB
+========================= */
+
+let selectedJobId = null;
+
+
+/* =========================
+   LOAD JOBS FROM SUPABASE
+========================= */
+
+async function loadJobs(){
+
+    const jobsGrid =
+        document.getElementById("jobsGrid");
+
+    if(!jobsGrid) return;
+
+    jobsGrid.innerHTML =
+        '<div class="loading">Jobs loading...</div>';
+
+
+    const { data, error } =
+        await supabaseClient
+        .from("jobs")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        console.error(
+            "Jobs load error:",
+            error
+        );
+
+        jobsGrid.innerHTML =
+            '<div class="loading">Jobs load नहीं हो सकीं।</div>';
+
+        return;
+    }
+
+
+    if(!data || data.length === 0){
+
+        jobsGrid.innerHTML =
+            '<div class="loading">अभी कोई नई Job उपलब्ध नहीं है।</div>';
+
+        return;
+    }
+
+
+    allJobs = data;
+
+    renderJobs(data);
+
+}
+
+
+/* =========================
+   RENDER JOBS
+========================= */
+
+function renderJobs(jobs){
+
+    const jobsGrid =
+        document.getElementById("jobsGrid");
+
+    jobsGrid.innerHTML = "";
+
+
+    jobs.forEach(job => {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "job-card";
+
+
+        card.innerHTML = `
+
+            <div class="job-top">
+
+                <span class="job-tag">
+                    ${escapeHTML(job.category || "JOB")}
+                </span>
+
+                <span class="job-date">
+                    New
+                </span>
+
+            </div>
+
+
+            <h3>
+                ${escapeHTML(job.title || "")}
+            </h3>
+
+
+            <p class="company">
+                🏢 ${escapeHTML(job.company || "")}
+            </p>
+
+
+            <div class="job-info">
+                📍 ${escapeHTML(job.location || "India")}
+            </div>
+
+
+            <div class="job-info">
+                💰 ${escapeHTML(job.salary || "Salary not mentioned")}
+            </div>
+
+
+            <div class="job-info">
+                🎓 ${escapeHTML(job.qualification || "Not specified")}
+            </div>
+
+
+            <div class="job-info">
+                💼 ${escapeHTML(job.experience || "Not specified")}
+            </div>
+
+
+            <div class="job-actions">
+
+                <button
+                    class="details-btn"
+                    onclick="showDetails(${job.id})"
+                >
+                    View Details
+                </button>
+
+
+                <button
+                    class="apply-btn"
+                    onclick="applyJob(${job.id})"
+                >
+                    Apply Now
+                </button>
+
+            </div>
+
+        `;
+
+
+        jobsGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   HTML SAFETY
+========================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   JOB DETAILS
+========================= */
+
+function showDetails(jobId){
+
+    const job =
+        allJobs.find(
+            item => Number(item.id) === Number(jobId)
+        );
+
+
+    if(!job) return;
+
+
+    document.getElementById(
+        "detailsTitle"
+    ).textContent =
+        job.title || "Job Details";
+
+
+    document.getElementById(
+        "detailsContent"
+    ).innerHTML = `
+
+        <p>
+            <strong>🏢 Company:</strong>
+            ${escapeHTML(job.company || "")}
+        </p>
+
+        <p>
+            <strong>📍 Location:</strong>
+            ${escapeHTML(job.location || "India")}
+        </p>
+
+        <p>
+            <strong>💰 Salary:</strong>
+            ${escapeHTML(job.salary || "Not mentioned")}
+        </p>
+
+        <p>
+            <strong>🎓 Qualification:</strong>
+            ${escapeHTML(job.qualification || "Not specified")}
+        </p>
+
+        <p>
+            <strong>💼 Experience:</strong>
+            ${escapeHTML(job.experience || "Not specified")}
+        </p>
+
+        <p style="margin-top:15px;">
+            <strong>Job Description:</strong>
+        </p>
+
+        <p>
+            ${escapeHTML(job.description || "No description available.")}
+        </p>
+
+    `;
+
+
+    document.getElementById(
+        "detailsModal"
+    ).style.display = "flex";
+
+}
+
+
+function closeDetails(){
+
+    document.getElementById(
+        "detailsModal"
+    ).style.display = "none";
+
+}
+
+
+/* =========================
+   APPLY
+========================= */
+
+function applyJob(jobId){
+
+    const job =
+        allJobs.find(
+            item => Number(item.id) === Number(jobId)
+        );
+
+
+    if(!job){
+
+        alert("Job select नहीं हुई।");
+
+        return;
+    }
+
+
+    selectedJobId =
+        Number(jobId);
+
+
+    document.getElementById(
+        "applyJobName"
+    ).textContent =
+        "Applying for: " +
+        (job.title || "Selected Job");
+
+
+    document.getElementById(
+        "applyModal"
+    ).style.display = "flex";
+
+}
+
+
+/* =========================
+   CLOSE APPLY
+========================= */
+
+function closeApply(){
+
+    document.getElementById(
+        "applyModal"
+    ).style.display = "none";
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadJobs();
+
+</script>
+<!-- =========================
+     APPLICATION SUBMIT
+========================= -->
+
+<script>
+
+async function submitApplication(){
+
+    /* =========================
+       GET FORM VALUES
+    ========================= */
+
+    const name =
+        document
+        .getElementById("appName")
+        .value
+        .trim();
+
+
+    const phone =
+        document
+        .getElementById("appPhone")
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById("appEmail")
+        .value
+        .trim();
+
+
+    const city =
+        document
+        .getElementById("appCity")
+        .value
+        .trim();
+
+
+    const education =
+        document
+        .getElementById("appEducation")
+        .value
+        .trim();
+
+
+    const experience =
+        document
+        .getElementById("appExperience")
+        .value
+        .trim();
+
+
+    /* =========================
+       VALIDATION
+    ========================= */
+
+    if(!name){
+
+        alert(
+            "कृपया अपना Name भरें।"
+        );
+
+        return;
+    }
+
+
+    if(!phone){
+
+        alert(
+            "कृपया अपना Mobile Number भरें।"
+        );
+
+        return;
+    }
+
+
+    if(!email){
+
+        alert(
+            "कृपया अपना Email भरें।"
+        );
+
+        return;
+    }
+
+
+    if(!selectedJobId){
+
+        alert(
+            "Job select नहीं हुई।"
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       EMAIL BASIC CHECK
+    ========================= */
+
+    if(
+        !email.includes("@") ||
+        !email.includes(".")
+    ){
+
+        alert(
+            "कृपया सही Email Address डालें।"
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       MOBILE BASIC CHECK
+    ========================= */
+
+    const cleanPhone =
+        phone.replace(/\D/g,"");
+
+
+    if(cleanPhone.length < 10){
+
+        alert(
+            "कृपया सही Mobile Number डालें।"
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       DISABLE BUTTON
+    ========================= */
+
+    const submitButton =
+        document.querySelector(
+            "#applyModal .submit-btn"
+        );
+
+
+    if(submitButton){
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "Submitting...";
+
+    }
+
+
+    try{
+
+        /* =========================
+           INSERT APPLICATION
+        ========================= */
+
+        const { data, error } =
+            await supabaseClient
+            .from("applications")
+            .insert({
+
+                job_id:
+                    selectedJobId,
+
+                name:
+                    name,
+
+                phone:
+                    cleanPhone,
+
+                email:
+                    email,
+
+                city:
+                    city,
+
+                education:
+                    education,
+
+                experience:
+                    experience
+
+            })
+            .select();
+
+
+        /* =========================
+           DATABASE ERROR
+        ========================= */
+
+        if(error){
+
+            console.error(
+                "Application Error:",
+                error
+            );
+
+            alert(
+                "Application submit नहीं हुई:\n\n" +
+                error.message
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           SUCCESS
+        ========================= */
+
+        console.log(
+            "Application saved:",
+            data
+        );
+
+
+        alert(
+            "✅ आपकी Application successfully submit हो गई!"
+        );
+
+
+        /* =========================
+           RESET FORM
+        ========================= */
+
+        document.getElementById(
+            "appName"
+        ).value = "";
+
+
+        document.getElementById(
+            "appPhone"
+        ).value = "";
+
+
+        document.getElementById(
+            "appEmail"
+        ).value = "";
+
+
+        document.getElementById(
+            "appCity"
+        ).value = "";
+
+
+        document.getElementById(
+            "appEducation"
+        ).value = "";
+
+
+        document.getElementById(
+            "appExperience"
+        ).value = "";
+
+
+        const resumeInput =
+            document.getElementById(
+                "appResume"
+            );
+
+
+        if(resumeInput){
+
+            resumeInput.value = "";
+
+        }
+
+
+        selectedJobId = null;
+
+
+        closeApply();
+
+
+    }catch(error){
+
+        console.error(
+            "Unexpected Error:",
+            error
+        );
+
+
+        alert(
+            "कुछ समस्या हुई। कृपया दोबारा कोशिश करें।"
+        );
+
+
+    }finally{
+
+        /* =========================
+           ENABLE BUTTON AGAIN
+        ========================= */
+
+        if(submitButton){
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "Submit Application";
+
+        }
+
+    }
+
+}
+
+</script>
+<script>
+
+/* =========================
+   ADVANCED JOB SEARCH
+========================= */
+
+function searchJobs(){
+
+    const input =
+        document
+        .getElementById("searchInput");
+
+    if(!input) return;
+
+    const search =
+        input.value
+        .trim()
+        .toLowerCase();
+
+
+    if(!search){
+
+        renderJobs(allJobs);
+
+        return;
+    }
+
+
+    const filtered =
+        allJobs.filter(job => {
+
+            const title =
+                String(
+                    job.title || ""
+                ).toLowerCase();
+
+
+            const company =
+                String(
+                    job.company || ""
+                ).toLowerCase();
+
+
+            const category =
+                String(
+                    job.category || ""
+                ).toLowerCase();
+
+
+            const location =
+                String(
+                    job.location || ""
+                ).toLowerCase();
+
+
+            const qualification =
+                String(
+                    job.qualification || ""
+                ).toLowerCase();
+
+
+            const experience =
+                String(
+                    job.experience || ""
+                ).toLowerCase();
+
+
+            return (
+
+                title.includes(search) ||
+
+                company.includes(search) ||
+
+                category.includes(search) ||
+
+                location.includes(search) ||
+
+                qualification.includes(search) ||
+
+                experience.includes(search)
+
+            );
+
+        });
+
+
+    if(filtered.length === 0){
+
+        document.getElementById(
+            "jobsGrid"
+        ).innerHTML = `
+
+            <div class="loading">
+
+                कोई matching job नहीं मिली।
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    renderJobs(filtered);
+
+}
+
+
+/* =========================
+   SEARCH ON ENTER
+========================= */
+
+document
+    .getElementById("searchInput")
+    ?.addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                searchJobs();
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   CATEGORY FILTER
+========================= */
+
+function filterCategory(category){
+
+    if(!allJobs.length){
+
+        return;
+    }
+
+
+    const filtered =
+        allJobs.filter(job => {
+
+            const jobCategory =
+                String(
+                    job.category || ""
+                ).toLowerCase();
+
+
+            const title =
+                String(
+                    job.title || ""
+                ).toLowerCase();
+
+
+            return (
+
+                jobCategory.includes(
+                    category.toLowerCase()
+                )
+
+                ||
+
+                title.includes(
+                    category.toLowerCase()
+                )
+
+            );
+
+        });
+
+
+    if(filtered.length === 0){
+
+        document.getElementById(
+            "jobsGrid"
+        ).innerHTML = `
+
+            <div class="loading">
+
+                इस category में अभी कोई job नहीं मिली।
+
+            </div>
+
+        `;
+
+    }else{
+
+        renderJobs(filtered);
+
+    }
+
+
+    document
+        .getElementById("jobs")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   CLEAR SEARCH
+========================= */
+
+function showAllJobs(){
+
+    const input =
+        document
+        .getElementById("searchInput");
+
+    if(input){
+
+        input.value = "";
+
+    }
+
+    renderJobs(allJobs);
+
+}
+
+</script>
+<script>
+
+/* =========================
+   MODAL CONTROL
+========================= */
+
+function closeAllModals(){
+
+    const details =
+        document.getElementById("detailsModal");
+
+    const apply =
+        document.getElementById("applyModal");
+
+    if(details){
+        details.style.display = "none";
+    }
+
+    if(apply){
+        apply.style.display = "none";
+    }
+
+}
+
+
+/* =========================
+   CLOSE MODAL ON BACKDROP
+========================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const details =
+            document.getElementById("detailsModal");
+
+        const apply =
+            document.getElementById("applyModal");
+
+
+        if(
+            details &&
+            event.target === details
+        ){
+
+            closeDetails();
+
+        }
+
+
+        if(
+            apply &&
+            event.target === apply
+        ){
+
+            closeApply();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeAllModals();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CLOSE BUTTON SAFETY
+========================= */
+
+function closeDetails(){
+
+    const modal =
+        document.getElementById(
+            "detailsModal"
+        );
+
+    if(modal){
+
+        modal.style.display = "none";
+
+    }
+
+}
+
+
+function closeApply(){
+
+    const modal =
+        document.getElementById(
+            "applyModal"
+        );
+
+    if(modal){
+
+        modal.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================
+   PREVENT DOUBLE SUBMIT
+========================= */
+
+let applicationSubmitting = false;
+
+
+/* =========================
+   PAGE READY CHECK
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        console.log(
+            "JobDagar website loaded successfully."
+        );
+
+    }
+);
+
+</script>
+<!-- =========================
+     FINAL WEBSITE POLISH
+========================= -->
+
+<style>
+
+/* =========================
+   JOB EMPTY / ERROR
+========================= */
+
+.job-message{
+    grid-column:1 / -1;
+    background:#fff;
+    padding:35px 20px;
+    border-radius:14px;
+    text-align:center;
+    color:#687386;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.job-message.error{
+    color:#d93025;
+}
+
+
+/* =========================
+   BUTTON STATES
+========================= */
+
+button:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+
+/* =========================
+   MODAL ANIMATION
+========================= */
+
+.modal{
+    animation:modalFade .18s ease;
+}
+
+@keyframes modalFade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   JOB CARD HOVER
+========================= */
+
+.job-card{
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.job-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.10);
+
+}
+
+
+/* =========================
+   APPLY FORM
+========================= */
+
+.form-input::placeholder{
+    color:#9aa4b2;
+}
+
+
+/* =========================
+   MOBILE IMPROVEMENTS
+========================= */
+
+@media(max-width:600px){
+
+    .section{
+        margin:35px auto;
+    }
+
+    .section-title{
+        font-size:24px;
+    }
+
+    .categories{
+        gap:10px;
+    }
+
+    .category{
+        padding:17px 10px;
+    }
+
+    .category-icon{
+        font-size:24px;
+    }
+
+    .job-card{
+        padding:18px;
+    }
+
+    .modal{
+        padding:10px;
+    }
+
+    .modal-box{
+        max-height:92vh;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+/* =========================
+   IMPROVED JOB LOADING
+========================= */
+
+async function refreshJobs(){
+
+    const jobsGrid =
+        document.getElementById("jobsGrid");
+
+    if(!jobsGrid){
+
+        return;
+
+    }
+
+
+    jobsGrid.innerHTML = `
+
+        <div class="job-message">
+
+            Jobs loading...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const { data, error } =
+            await supabaseClient
+            .from("jobs")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+        if(error){
+
+            console.error(
+                "Supabase Jobs Error:",
+                error
+            );
+
+
+            jobsGrid.innerHTML = `
+
+                <div class="job-message error">
+
+                    Jobs load नहीं हो सकीं।
+
+                    <br><br>
+
+                    कृपया थोड़ी देर बाद फिर कोशिश करें।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        allJobs =
+            Array.isArray(data)
+            ? data
+            : [];
+
+
+        if(allJobs.length === 0){
+
+            jobsGrid.innerHTML = `
+
+                <div class="job-message">
+
+                    अभी कोई नई Job उपलब्ध नहीं है।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        renderJobs(allJobs);
+
+
+    }catch(error){
+
+        console.error(
+            "Unexpected Jobs Error:",
+            error
+        );
+
+
+        jobsGrid.innerHTML = `
+
+            <div class="job-message error">
+
+                कुछ technical problem हुई।
+
+                <br><br>
+
+                कृपया बाद में फिर कोशिश करें।
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   REFRESH BUTTON HELPER
+========================= */
+
+function reloadJobs(){
+
+    refreshJobs();
+
+}
+
+
+/* =========================
+   APPLICATION FORM
+========================= */
+
+function clearApplicationForm(){
+
+    const fields = [
+
+        "appName",
+        "appPhone",
+        "appEmail",
+        "appCity",
+        "appEducation",
+        "appExperience"
+
+    ];
+
+
+    fields.forEach(id => {
+
+        const field =
+            document.getElementById(id);
+
+        if(field){
+
+            field.value = "";
+
+        }
+
+    });
+
+
+    const resume =
+        document.getElementById(
+            "appResume"
+        );
+
+
+    if(resume){
+
+        resume.value = "";
+
+    }
+
+}
+
+
+/* =========================
+   CLOSE MODALS ON PAGE LOAD
+========================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        closeAllModals();
+
+    }
+);
+
+
+/* =========================
+   FINAL JOB LOAD
+========================= */
+
+refreshJobs();
+
+</script>
+</body>
+</html>
