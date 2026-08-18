@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL =
+"https://ojloflsbvvucyumlgtus.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_VlsXGIvfOJFlaN5pnjVVlA_p22cMCGJ";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -483,7 +497,7 @@ onclick="showAllJobs()">
 
 
 <div class="jobs-grid" id="jobsGrid">
-
+<div id="databaseJobs" class="jobs-grid"></div>
 
 <!-- JOB 1 -->
 
@@ -2160,6 +2174,120 @@ document.getElementById("searchInput")
 
 </script>
 
+<script>
 
+async function loadDatabaseJobs(){
+
+    const jobsBox =
+        document.getElementById("databaseJobs");
+
+    if(!jobsBox) return;
+
+    const { data, error } =
+        await supabaseClient
+        .from("jobs")
+        .select("*")
+        .order("created_at", { ascending:false });
+
+    if(error){
+
+        console.error("Jobs load error:", error);
+
+        jobsBox.innerHTML =
+        "<p style='text-align:center;color:#e53935;'>Jobs load नहीं हो सकीं।</p>";
+
+        return;
+    }
+
+    if(!data || data.length === 0){
+
+        jobsBox.innerHTML =
+        "<p style='text-align:center;color:#687386;'>अभी कोई नई Job उपलब्ध नहीं है।</p>";
+
+        return;
+    }
+
+    jobsBox.innerHTML = "";
+
+    data.forEach(job => {
+
+        const card = document.createElement("div");
+
+        card.className = "job-card";
+
+        card.innerHTML = `
+
+            <div class="job-top">
+
+                <span class="job-tag">
+                    ${job.category || "JOB"}
+                </span>
+
+                <span class="job-date">
+                    New
+                </span>
+
+            </div>
+
+            <h3>
+                ${job.title || ""}
+            </h3>
+
+            <p class="company">
+                🏢 ${job.company || ""}
+            </p>
+
+            <div class="job-info">
+                📍 ${job.location || "India"}
+            </div>
+
+            <div class="job-info">
+                💰 ${job.salary || "Salary not mentioned"}
+            </div>
+
+            <div class="job-info">
+                🎓 ${job.qualification || "Not specified"}
+            </div>
+
+            <div class="job-info">
+                💼 ${job.experience || "Not specified"}
+            </div>
+
+            <div class="job-actions">
+
+                <button
+                    class="details-btn"
+                    onclick='showDetails(
+                        ${JSON.stringify(job.title || "")},
+                        ${JSON.stringify(job.company || "")},
+                        ${JSON.stringify(job.location || "")},
+                        ${JSON.stringify(job.salary || "")},
+                        ${JSON.stringify(job.qualification || "")},
+                        ${JSON.stringify(job.description || "")}
+                    )'
+                >
+                    View Details
+                </button>
+
+                <button
+                    class="apply-btn"
+                    onclick="applyJob()"
+                >
+                    Apply Now
+                </button>
+
+            </div>
+
+        `;
+
+        jobsBox.appendChild(card);
+
+    });
+
+}
+
+loadDatabaseJobs();
+
+</script>
 </body>
 </html>
