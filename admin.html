@@ -242,6 +242,138 @@ Employers और Contact Messages manage करने
 </div>
 
 </div>
+<div id="adminLogin" style="
+position:fixed;
+inset:0;
+background:#f4f7fb;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+padding:20px;
+">
 
+<div style="
+background:white;
+width:100%;
+max-width:380px;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 40px rgba(0,0,0,.12);
+">
+
+<h2 style="margin-bottom:8px;">
+🔐 JobDagar Admin Login
+</h2>
+
+<p style="color:#687386;margin-bottom:20px;">
+Admin account से login करें
+</p>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="Admin Email"
+style="
+width:100%;
+padding:13px;
+margin:6px 0;
+border:1px solid #dce2ea;
+border-radius:7px;
+"
+>
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Password"
+style="
+width:100%;
+padding:13px;
+margin:6px 0;
+border:1px solid #dce2ea;
+border-radius:7px;
+"
+>
+
+<button
+onclick="adminLogin()"
+style="
+width:100%;
+margin-top:10px;
+padding:13px;
+background:#1769e0;
+color:white;
+border:0;
+border-radius:7px;
+font-weight:bold;
+cursor:pointer;
+">
+
+Login
+
+</button>
+
+<p
+id="loginMessage"
+style="
+color:#e53935;
+margin-top:12px;
+font-size:13px;
+">
+</p>
+
+</div>
+<script>
+
+async function adminLogin(){
+
+    const email =
+    document.getElementById("adminEmail").value.trim();
+
+    const password =
+    document.getElementById("adminPassword").value;
+
+    const message =
+    document.getElementById("loginMessage");
+
+
+    if(email === "" || password === ""){
+
+        message.innerText =
+        "Email और Password दोनों भरें।";
+
+        return;
+
+    }
+
+
+    const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+
+        email: email,
+
+        password: password
+
+    });
+
+
+    if(error){
+
+        message.innerText =
+        "Login failed: " + error.message;
+
+        return;
+
+    }
+
+
+    document.getElementById("adminLogin")
+    .style.display = "none";
+
+}
+
+</script>
+</div>
 </body>
 </html>
