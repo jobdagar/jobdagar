@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>JobDagar Admin Panel</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#172033;
+}
+
+.admin-header{
+background:#1769e0;
+color:white;
+padding:18px 20px;
+}
+
+.admin-header h1{
+font-size:22px;
+}
+
+.admin-header p{
+margin-top:5px;
+font-size:13px;
+opacity:.9;
+}
+
+.container{
+width:92%;
+max-width:1100px;
+margin:25px auto;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.card{
+background:white;
+padding:22px;
+border-radius:12px;
+border:1px solid #e4e9f0;
+}
+
+.card-icon{
+font-size:28px;
+}
+
+.card h3{
+margin-top:10px;
+font-size:15px;
+}
+
+.card strong{
+display:block;
+font-size:28px;
+margin-top:5px;
+color:#1769e0;
+}
+
+.section{
+background:white;
+margin-top:25px;
+padding:25px;
+border-radius:12px;
+border:1px solid #e4e9f0;
+}
+
+.section h2{
+font-size:20px;
+margin-bottom:18px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+button{
+border:0;
+background:#1769e0;
+color:white;
+padding:11px 18px;
+border-radius:7px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#0d55b8;
+}
+
+.logout{
+background:#e53935;
+}
+
+@media(max-width:700px){
+
+.dashboard{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="admin-header">
+
+<h1>🛠️ JobDagar Admin Panel</h1>
+
+<p>Website Management Dashboard</p>
+
+</header>
+
+<div class="container">
+
+<div class="dashboard">
+
+<div class="card">
+
+<div class="card-icon">💼</div>
+
+<h3>Total Jobs</h3>
+
+<strong id="totalJobs">0</strong>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">📝</div>
+
+<h3>Applications</h3>
+
+<strong id="totalApplications">0</strong>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🏢</div>
+
+<h3>Employers</h3>
+
+<strong id="totalEmployers">0</strong>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">📩</div>
+
+<h3>Messages</h3>
+
+<strong id="totalMessages">0</strong>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>Quick Actions</h2>
+
+<div class="buttons">
+
+<button>
+➕ Add Job
+</button>
+
+<button>
+📋 Manage Jobs
+</button>
+
+<button>
+📝 Applications
+</button>
+
+<button>
+📩 Messages
+</button>
+
+<button>
+🏢 Employers
+</button>
+
+<button class="logout">
+Logout
+</button>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>Welcome to JobDagar Admin</h2>
+
+<p>
+यहाँ से आगे हम Jobs, Applications,
+Employers और Contact Messages manage करने
+का पूरा system बनाएँगे।
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
